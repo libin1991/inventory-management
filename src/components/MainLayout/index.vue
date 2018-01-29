@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Side from './_side'
+import Side from './Side'
 export default {
   components: {
     Side
@@ -34,5 +34,3 @@ export default {
   }
 }
 </style>
-
-

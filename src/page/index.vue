@@ -1,3 +1,5 @@
 <template>
-  <Container></Container>
+  <Container>
+    Hello
+  </Container>
 </template>

@@ -16,6 +16,11 @@ export default new Router({
           path: 'index',
           name: 'index',
           component: resolve => { require(['@/page/index.vue'], resolve) }
+        },
+        {
+          path: 'business/in',
+          name: 'business-in',
+          component: resolve => { require(['@/page/business/in/index.vue'], resolve) }
         }
       ]
     }

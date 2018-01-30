@@ -5,8 +5,14 @@ export default [
     icon: 'el-icon-menu'
   },
   {
-    label: '测试2',
-    value: 'test2',
-    icon: 'el-icon-menu'
+    label: '日常业务',
+    value: 'business',
+    icon: 'el-icon-menu',
+    children: [
+      {
+        label: '入库',
+        value: 'business-in'
+      }
+    ]
   }
 ]

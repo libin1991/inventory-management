@@ -6,15 +6,16 @@
 </template>
 
 <script>
+import db from '@/mixins/db.js'
 export default {
+  mixins: [
+    db
+  ],
   methods: {
     // 初始化本地数据库
     resetLocalDB () {
-      this.$db.setState({
-        // 物品
-        projects: []
-      })
-        .write()
+      this.vuexResetAll()
+        .then(this.vuexLoadAll)
     },
     upload () {
       // this.$sync.ref('data').set({}) 清空云端

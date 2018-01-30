@@ -11,7 +11,7 @@ export default {
     db
   ],
   mounted () {
-    this.vuexProjectLoad()
+    this.vuexLoadAll()
   }
 }
 </script>

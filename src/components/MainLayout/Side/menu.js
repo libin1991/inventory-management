@@ -12,6 +12,10 @@ export default [
       {
         label: '入库',
         value: 'business-in'
+      },
+      {
+        label: '商品管理',
+        value: 'business-manage-project'
       }
     ]
   },
@@ -21,11 +25,7 @@ export default [
     icon: 'el-icon-menu',
     children: [
       {
-        label: '商品管理',
-        value: 'setting-manage-project'
-      },
-      {
-        label: '云端同步',
+        label: '数据',
         value: 'setting-db'
       }
     ]

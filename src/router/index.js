@@ -23,14 +23,14 @@ export default new Router({
           component: resolve => { require(['@/page/business/in/index.vue'], resolve) }
         },
         {
+          path: 'business/manage/project',
+          name: 'business-manage-project',
+          component: resolve => { require(['@/page/business/manage/project/index.vue'], resolve) }
+        },
+        {
           path: 'setting/db',
           name: 'setting-db',
           component: resolve => { require(['@/page/setting/db/index.vue'], resolve) }
-        },
-        {
-          path: 'setting/manage/project',
-          name: 'setting-manage-project',
-          component: resolve => { require(['@/page/setting/manage/project/index.vue'], resolve) }
         }
       ]
     }

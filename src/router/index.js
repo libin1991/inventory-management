@@ -26,6 +26,11 @@ export default new Router({
           path: 'setting/db',
           name: 'setting-db',
           component: resolve => { require(['@/page/setting/db/index.vue'], resolve) }
+        },
+        {
+          path: 'setting/manage/project',
+          name: 'setting-manage-project',
+          component: resolve => { require(['@/page/setting/manage/project/index.vue'], resolve) }
         }
       ]
     }

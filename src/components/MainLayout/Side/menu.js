@@ -21,6 +21,10 @@ export default [
     icon: 'el-icon-menu',
     children: [
       {
+        label: '商品管理',
+        value: 'setting-manage-project'
+      },
+      {
         label: '云端同步',
         value: 'setting-db'
       }

@@ -21,8 +21,8 @@ export default [
     icon: 'el-icon-menu',
     children: [
       {
-        label: '重置数据库',
-        value: 'setting-reset'
+        label: '云端同步',
+        value: 'setting-db'
       }
     ]
   }

@@ -23,11 +23,6 @@ export default {
       }
     }
   },
-  mounted () {
-    this.$sync.ref('data').set({
-      name: 'Hello'
-    })
-  },
   methods: {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {

@@ -9,6 +9,9 @@ import wilddog from 'wilddog'
 
 import '@/components'
 
+import low from 'lowdb'
+import LocalStorage from 'lowdb/adapters/LocalStorage'
+
 // 这个文件不会上传到git
 import key from '@/key.js'
 
@@ -22,6 +25,8 @@ var config = {
 wilddog.initializeApp(config)
 
 Vue.prototype.$sync = wilddog.sync()
+
+Vue.prototype.$db = low(new LocalStorage('db'))
 
 /* eslint-disable no-new */
 new Vue({

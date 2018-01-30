@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import low from 'lowdb'
+import LocalStorage from 'lowdb/adapters/LocalStorage'
 export default {
   data () {
     return {
@@ -22,6 +24,16 @@ export default {
         ]
       }
     }
+  },
+  mounted () {
+    const adapter = new LocalStorage('db2')
+    const db = low(adapter)
+    db.defaults({ posts: [] })
+      .write()
+    // Data is automatically saved to localStorage
+    db.get('posts')
+      .push({ title: 'lowdb' })
+      .write()
   },
   methods: {
     submitForm (formName) {

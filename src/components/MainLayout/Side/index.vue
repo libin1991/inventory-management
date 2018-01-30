@@ -6,6 +6,7 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b">
+    <!-- 循环 -->
     <template v-for="(menu, menuIndex) in menu">
       <!-- 有子菜单 -->
       <el-submenu v-if="menu.children" :key="'submenu' + menuIndex" :index="menu.value">

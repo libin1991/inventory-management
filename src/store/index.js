@@ -5,8 +5,6 @@ import LocalStorage from 'lowdb/adapters/LocalStorage'
 
 const db = low(new LocalStorage('db'))
 
-console.log(db)
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -23,6 +21,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    // 商品列表中新增条目
     vuexProjectsPush (context, item) {
       db
         .get('projects')

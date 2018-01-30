@@ -14,5 +14,16 @@ export default [
         value: 'business-in'
       }
     ]
+  },
+  {
+    label: '设置',
+    value: 'setting',
+    icon: 'el-icon-menu',
+    children: [
+      {
+        label: '重置数据库',
+        value: 'setting-reset'
+      }
+    ]
   }
 ]

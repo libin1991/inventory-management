@@ -21,6 +21,11 @@ export default new Router({
           path: 'business/in',
           name: 'business-in',
           component: resolve => { require(['@/page/business/in/index.vue'], resolve) }
+        },
+        {
+          path: 'setting/reset',
+          name: 'setting-reset',
+          component: resolve => { require(['@/page/setting/reset/index.vue'], resolve) }
         }
       ]
     }

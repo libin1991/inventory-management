@@ -9,6 +9,7 @@ import wilddog from 'wilddog'
 
 import '@/components'
 
+// 这个文件不会上传到git
 import key from '@/key.js'
 
 Vue.use(ElementUI)

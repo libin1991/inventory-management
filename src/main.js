@@ -6,32 +6,31 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 import wilddog from 'wilddog'
-
+import store from '@/store'
 import '@/components'
-
 import low from 'lowdb'
 import LocalStorage from 'lowdb/adapters/LocalStorage'
-
-// 这个文件不会上传到git
 import key from '@/key.js'
 
+// Element
 Vue.use(ElementUI)
 
-Vue.config.productionTip = false
-
-var config = {
+// 野狗
+wilddog.initializeApp({
   syncURL: key.wilddog.syncURL
-}
-wilddog.initializeApp(config)
-
+})
 Vue.prototype.$sync = wilddog.sync()
 
+// 本地数据库
 Vue.prototype.$db = low(new LocalStorage('db'))
+
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -28,8 +28,7 @@ export default {
   },
   methods: {
     save () {
-      this.$db.defaults({ posts: [] })
-        .write()
+      this.vuexProjectsPush(this.addForm)
     }
   }
 }

@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import db from '@/mixins/db.js'
 export default {
-  name: 'App'
+  mixins: [
+    db
+  ],
+  mounted () {
+    this.vuexProjectLoad()
+  }
 }
 </script>
 

@@ -12,7 +12,11 @@ export default {
     resetLocalDB () {
       this.$db.setState({
         // 物品
-        projects: []
+        projects: [
+          {
+            name: 'default'
+          }
+        ]
       })
         .write()
     },

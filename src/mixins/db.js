@@ -9,7 +9,9 @@ export default {
   },
   methods: {
     getProjects () {
-      this.projects = this.$db.get('projects')
+      this.projects = this.$db
+        .get('projects')
+        .value() || []
     }
   }
 }

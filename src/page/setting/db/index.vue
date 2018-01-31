@@ -18,8 +18,10 @@ export default {
         .then(this.vuexLoadAll)
     },
     upload () {
-      // this.$sync.ref('data').set({}) 清空云端
       console.group('备份数据库到云端')
+      this.$sync.ref('data/backup').push({
+        projects: this.vuexProjects
+      })
       console.log('还没做')
       console.groupEnd()
     }

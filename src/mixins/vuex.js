@@ -1,8 +1,9 @@
 import vuexSetting from '@/store'
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   computed: {
-    ...mapState([Object.keys(vuexSetting.state)])
+    ...mapState([Object.keys(vuexSetting.state)]),
+    ...mapGetters([Object.keys(vuexSetting.getters)])
   },
   methods: {
     ...mapMutations(Object.keys(vuexSetting._mutations)),

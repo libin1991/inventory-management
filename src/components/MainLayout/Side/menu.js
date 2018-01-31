@@ -14,7 +14,7 @@ export default [
         value: 'business-in'
       },
       {
-        label: '商品管理',
+        label: '物品管理',
         value: 'business-manage-project'
       }
     ]

@@ -9,21 +9,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // 商品列表
+    // 物品列表 全部的
     vuexProjects: []
   },
+  getters: {
+    // 物品列表 有效的 (过滤掉删除的)
+    vuexProjectsValid: state => state.vuexProjects.filter(e => !e.delFlag)
+  },
   mutations: {
-    // 从数据库重新读商品列表
+    // 从数据库重新读物品列表
     vuexProjectLoad (state) {
       state.vuexProjects = db
         .get('projects')
-        .filter({delFlag: false})
         .sortBy('id')
         .value() || []
       // 倒序
       state.vuexProjects.reverse()
     },
-    // 清空数据库中的商品表
+    // 清空数据库中的物品表
     vuexProjectReset (state) {
       db.set('projects', [])
         .write()
@@ -44,19 +47,35 @@ export default new Vuex.Store({
         resolve()
       })
     },
-    // 商品列表中新增条目
+    // 物品列表中新增条目
     vuexProjectsPush (context, item) {
-      // 在数据库中新增
-      db
-        .get('projects')
-        .push({
-          ...item,
-          id: context.state.vuexProjects.length,
-          delFlag: false
-        })
-        .write()
-      // 同步数据库到state
-      context.commit('vuexProjectLoad')
+      return new Promise((resolve, reject) => {
+        // 在数据库中新增
+        db
+          .get('projects')
+          .push({
+            ...item,
+            id: context.state.vuexProjects.length,
+            delFlag: false
+          })
+          .write()
+        // 同步数据库到state
+        context.commit('vuexProjectLoad')
+        resolve()
+      })
+    },
+    vuexProjectsDelete (context, id) {
+      return new Promise((resolve, reject) => {
+        // 在数据库中标记删除
+        db
+          .get('projects')
+          .find({id: id})
+          .assign({delFlag: true})
+          .write()
+        // 同步数据库到state
+        context.commit('vuexProjectLoad')
+        resolve()
+      })
     }
   }
 })

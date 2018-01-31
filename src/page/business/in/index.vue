@@ -1,11 +1,11 @@
 <template>
   <Container>
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="活动名称" prop="name">
-        <el-input
-          v-model="ruleForm.name"
-          style="width: 300px;">
-        </el-input>
+    <el-form :model="form" :rules="rules" ref="form">
+      <el-form-item label="物品" prop="project">
+        <ProjectSelect v-model="form.project"></ProjectSelect>
+      </el-form-item>
+      <el-form-item label="数量" prop="num">
+        <el-input-number v-model="form.num" :step="10"></el-input-number>
       </el-form-item>
     </el-form>
   </Container>
@@ -17,13 +17,17 @@ import LocalStorage from 'lowdb/adapters/LocalStorage'
 export default {
   data () {
     return {
-      ruleForm: {
-        name: ''
+      form: {
+        project: null,
+        num: 1
       },
       rules: {
-        name: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        project: [
+          { required: true, message: '请输入活动名称', trigger: 'blur' }
+        ],
+        num: [
+          { required: true, message: '请输入活动名称', trigger: 'change' },
+          { type: 'number', min: 1, message: '最小是1', trigger: 'change' }
         ]
       }
     }

@@ -2,7 +2,7 @@
   <Container>
     <Xform v-model="addForm" @submit="save"></Xform>
     <el-table
-      :data="vuexProjects"
+      :data="vuexProjectsValid"
       style="width: 100%"
       max-height="400"
       size="mini"
@@ -47,7 +47,13 @@ export default {
 
     },
     handleDelete (index, row) {
-
+      this.vuexProjectsDelete(row.id)
+        .then(() => {
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+        })
     }
   }
 }

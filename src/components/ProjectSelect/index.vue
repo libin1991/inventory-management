@@ -8,7 +8,9 @@
       <div style="width: 200px;">
         <span style="float: left">
           {{ item.label }}
-          <span class="project-select-num">{{item.num}}</span>
+          <span class="project-select-num">
+            {{item.num === 0 ? '无' : item.num}}
+          </span>
         </span>
         <span style="float: right; color: #8492a6; font-size: 13px">
           ¥{{item.price}}
@@ -56,5 +58,6 @@ export default {
   color: #FFF;
   padding: 0px 6px;
   border-radius: 4px;
+  font-size: 12px;
 }
 </style>

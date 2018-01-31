@@ -31,6 +31,11 @@ export default {
         border-right: none;
       }
     }
+    .el-container {
+      .el-main {
+        background-color: #f2f2f2;
+      }
+    }
   }
 }
 </style>

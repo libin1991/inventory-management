@@ -36,6 +36,9 @@ export default {
 <style lang="scss">
 .container-component {
   margin-bottom: 20px;
+  .el-card {
+    box-shadow: none;
+  }
 }
 @media (min-width: 576px) {
   // 根据你的需要在这里添加样式

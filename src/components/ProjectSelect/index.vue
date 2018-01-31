@@ -5,8 +5,15 @@
       :key="item.value"
       :label="item.label"
       :value="item.value">
-      <span style="float: left">{{ item.label }}</span>
-      <span style="float: right; color: #8492a6; font-size: 13px">¥{{item.price}}</span>
+      <div style="width: 200px;">
+        <span style="float: left">
+          {{ item.label }}
+          <span class="project-select-num">{{item.num}}</span>
+        </span>
+        <span style="float: right; color: #8492a6; font-size: 13px">
+          ¥{{item.price}}
+        </span>
+      </div>
     </el-option>
   </el-select>
 </template>
@@ -35,9 +42,20 @@ export default {
       return this.vuexProjectsValid.map(e => ({
         value: e.id,
         label: e.name,
-        price: e.price
+        price: e.price,
+        num: e.num
       }))
     }
   }
 }
 </script>
+
+<style lang="scss">
+.project-select-num {
+  background-color: rgb(132, 146, 166);
+  color: #FFF;
+  padding: 0px 6px;
+  border-radius: 4px;
+}
+</style>
+

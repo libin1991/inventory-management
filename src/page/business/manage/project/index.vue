@@ -11,6 +11,7 @@
       <el-table-column prop="id" label="ID" width="100" align="center"></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="price" label="价格"></el-table-column>
+      <el-table-column prop="num" label="当前存量"></el-table-column>
       <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -35,7 +36,8 @@ export default {
     return {
       addForm: {
         name: '物品名称',
-        price: 1
+        price: 1,
+        num: 0
       }
     }
   },

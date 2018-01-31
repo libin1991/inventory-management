@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <Xform v-model="addForm" @submit="save"></Xform>
+    <Xform v-model="form" @submit="handleSave"></Xform>
     <el-table
       :data="vuexProjectsValid"
       style="width: 100%"
@@ -34,7 +34,7 @@ export default {
   },
   data () {
     return {
-      addForm: {
+      form: {
         name: '物品名称',
         price: 1,
         num: 0
@@ -42,12 +42,17 @@ export default {
     }
   },
   methods: {
-    save () {
-      this.vuexProjectsPush(this.addForm)
+    handleSave () {
+      this.vuexProjectsPush(this.form)
       this.vuexProjectLoad()
     },
     handleEdit (index, row) {
-
+      this.$router.push({
+        name: 'business-manage-project-edit',
+        params: {
+          id: row.id
+        }
+      })
     },
     handleDelete (index, row) {
       this.vuexProjectsDelete(row.id)

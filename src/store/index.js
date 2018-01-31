@@ -36,7 +36,9 @@ export default new Vuex.Store({
   },
   getters: {
     // [物品列表] 有效
-    vuexProjectsValid: state => state.vuexProjects.filter(e => !e.delFlag)
+    vuexProjectsValid: state => {
+      return state.vuexProjects.filter(e => !e.delFlag)
+    }
   },
   mutations: {
     // [物品列表] 增
@@ -57,7 +59,7 @@ export default new Vuex.Store({
         .assign({delFlag: true})
         .write()
     },
-    // [物品列表] 查
+    // [物品列表] 载入
     vuexProjectLoad (state) {
       state.vuexProjects = (
         db

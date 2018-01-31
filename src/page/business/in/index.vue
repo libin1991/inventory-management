@@ -32,16 +32,6 @@ export default {
       }
     }
   },
-  mounted () {
-    const adapter = new LocalStorage('db2')
-    const db = low(adapter)
-    db.defaults({ posts: [] })
-      .write()
-    // Data is automatically saved to localStorage
-    db.get('posts')
-      .push({ title: 'lowdb' })
-      .write()
-  },
   methods: {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {

@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import low from 'lowdb'
+import lodashId from 'lodash-id'
 import LocalStorage from 'lowdb/adapters/LocalStorage'
 
 const db = low(new LocalStorage('db'))
+db._.mixin(lodashId)
 
 Vue.use(Vuex)
 
@@ -53,9 +55,13 @@ export default new Vuex.Store({
         // 在数据库中新增
         db
           .get('projects')
-          .push({
+          // .push({
+          //   ...item,
+          //   id: context.state.vuexProjects.length,
+          //   delFlag: false
+          // })
+          .insert({
             ...item,
-            id: context.state.vuexProjects.length,
             delFlag: false
           })
           .write()

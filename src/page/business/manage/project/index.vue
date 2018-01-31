@@ -8,7 +8,7 @@
       size="mini"
       stripe
       border>
-      <el-table-column prop="id" label="ID" width="100" align="center"></el-table-column>
+      <!-- <el-table-column prop="id" label="ID" width="100" align="center"></el-table-column> -->
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="price" label="价格"></el-table-column>
       <el-table-column prop="num" label="当前存量"></el-table-column>

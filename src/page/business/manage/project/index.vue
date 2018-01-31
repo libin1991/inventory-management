@@ -45,7 +45,6 @@ export default {
     save () {
       this.vuexProjectsPush(this.addForm)
       this.vuexProjectLoad()
-      this.vuexUpload()
     },
     handleEdit (index, row) {
 
@@ -53,7 +52,6 @@ export default {
     handleDelete (index, row) {
       this.vuexProjectsDelete(row.id)
       this.vuexProjectLoad()
-      this.vuexUpload()
     }
   }
 }

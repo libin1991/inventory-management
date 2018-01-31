@@ -3,7 +3,8 @@
     <el-upload
       drag
       action="default"
-      :before-upload="handleUpload">
+      :before-upload="handleUpload"
+      class="import-uploader">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将 CSV 文件拖到此处，或 <em>点击上传</em></div>
     </el-upload>
@@ -95,3 +96,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.import-uploader {
+  .el-upload {
+    display: block;
+    .el-upload-dragger {
+      width: auto;
+    }
+  }
+}
+</style>
+

@@ -6,6 +6,8 @@ import LocalStorage from 'lowdb/adapters/LocalStorage'
 import wilddog from 'wilddog'
 import key from '@/key.js'
 
+Vue.use(Vuex)
+
 // 野狗
 const sync = wilddog.initializeApp({
   syncURL: key.wilddog.syncURL
@@ -27,28 +29,44 @@ const vuexUpload = (state) => {
 const db = low(new LocalStorage('db'))
 db._.mixin(lodashId)
 
-Vue.use(Vuex)
-
 export default new Vuex.Store({
   state: {
-    // 物品列表 全部的
+    // [物品列表] 全部
     vuexProjects: []
   },
   getters: {
-    // 物品列表 有效的 (过滤掉删除的)
+    // [物品列表] 有效
     vuexProjectsValid: state => state.vuexProjects.filter(e => !e.delFlag)
   },
   mutations: {
-    // 从数据库重新读物品列表
-    vuexProjectLoad (state) {
-      state.vuexProjects = db
+    // [物品列表] 增
+    vuexProjectsPush (state, item) {
+      db
         .get('projects')
-        .sortBy('id')
-        .value() || []
-      // 倒序
-      state.vuexProjects.reverse()
+        .insert({
+          ...item,
+          delFlag: false
+        })
+        .write()
     },
-    // 清空数据库中的物品表
+    // [物品列表] 删
+    vuexProjectsDelete (state, id) {
+      db
+        .get('projects')
+        .find({id: id})
+        .assign({delFlag: true})
+        .write()
+    },
+    // [物品列表] 查
+    vuexProjectLoad (state) {
+      state.vuexProjects = (
+        db
+          .get('projects')
+          .sortBy('id')
+          .value() || []
+      ).reverse()
+    },
+    // [物品列表] 清空
     vuexProjectReset (state) {
       db.set('projects', [])
         .write()
@@ -73,33 +91,11 @@ export default new Vuex.Store({
         resolve()
       })
     },
-    // 物品列表中新增条目
-    vuexProjectsPush (context, item) {
+    // [云数据操作] 清空云端备份
+    vuexClearCloud () {
       return new Promise((resolve, reject) => {
-        // 在数据库中新增
-        db
-          .get('projects')
-          .insert({
-            ...item,
-            delFlag: false
-          })
-          .write()
-        // 同步数据库到state
-        context.commit('vuexProjectLoad')
-        resolve()
-      })
-    },
-    vuexProjectsDelete (context, id) {
-      return new Promise((resolve, reject) => {
-        // 在数据库中标记删除
-        db
-          .get('projects')
-          .find({id: id})
-          .assign({delFlag: true})
-          .write()
-        // 同步数据库到state
-        context.commit('vuexProjectLoad')
-        resolve()
+        sync.ref('data/backup').set([])
+          .then(resolve)
       })
     }
   }

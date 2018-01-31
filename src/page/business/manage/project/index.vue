@@ -44,18 +44,16 @@ export default {
   methods: {
     save () {
       this.vuexProjectsPush(this.addForm)
+      this.vuexProjectLoad()
+      this.vuexUpload()
     },
     handleEdit (index, row) {
 
     },
     handleDelete (index, row) {
       this.vuexProjectsDelete(row.id)
-        .then(() => {
-          this.$message({
-            message: '删除成功',
-            type: 'success'
-          })
-        })
+      this.vuexProjectLoad()
+      this.vuexUpload()
     }
   }
 }

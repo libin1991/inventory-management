@@ -36,7 +36,8 @@ export default {
     return {
       form: {
         name: '物品名称',
-        price: 1
+        price: 1,
+        num: 0
       }
     }
   },
@@ -50,6 +51,7 @@ export default {
     handleCopy (index, row) {
       this.form.name = row.name
       this.form.price = row.price
+      // 这里就不复制存量了
     },
     // 编辑
     handleEdit (index, row) {

@@ -47,7 +47,6 @@ export default new Vuex.Store({
         .get('projects')
         .insert({
           ...item,
-          num: 0,
           delFlag: false
         })
         .write()

@@ -1,8 +1,5 @@
 <template>
   <div>
-    <!-- <el-upload :before-upload="handleUpload" action="default">
-      <el-button type="success">选择 CSV 文件</el-button>
-    </el-upload> -->
     <el-upload
       drag
       action="default"
@@ -10,23 +7,39 @@
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将 CSV 文件拖到此处，或 <em>点击上传</em></div>
     </el-upload>
-    <el-table
-      v-bind="table"
-      style="width: 100%"
-      max-height="300">
-      <el-table-column
-        v-for="(item, index) in table.columns"
-        :key="index"
-        :prop="item.prop"
-        :label="item.label">
-      </el-table-column>
-    </el-table>
+    <template v-if="table.data.length > 0">
+      <br>
+      <el-table
+        v-bind="table"
+        style="width: 100%"
+        max-height="300">
+        <el-table-column
+          v-for="(item, index) in table.columns"
+          :key="index"
+          :prop="item.prop"
+          :label="item.label">
+        </el-table-column>
+      </el-table>
+      <br>
+      <el-button type="success" @click="handleImport">确定导入</el-button>
+    </template>
   </div>
 </template>
 
 <script>
 import papa from 'papaparse'
+import vuex from '@/mixins/vuex.js'
 export default {
+  mixins: [
+    vuex
+  ],
+  props: {
+    name: {
+      type: String,
+      required: false,
+      default: 'projects'
+    }
+  },
   data () {
     return {
       table: {
@@ -39,6 +52,7 @@ export default {
     }
   },
   methods: {
+    // 获取文件
     handleUpload (file) {
       papa.parse(file, {
         header: true,
@@ -53,8 +67,30 @@ export default {
       })
       return false
     },
-    download () {
-      window.location.href = 'http://fairyever.qiniudn.com/d2admin-vue-demo.csv'
+    // 确定导入
+    handleImport () {
+      // 返回传入对象的为空值的keyName数组
+      const emptyKey = row => Object.keys(row).filter(e => row[e] === '')
+      switch (this.name) {
+        case 'projects':
+          this.vuexProjectReset()
+          this.table.data.filter(e => emptyKey(e).length === 0).forEach(e => {
+            this.vuexProjectsPush({
+              ...e,
+              price: Number(e.price),
+              num: Number(e.num)
+            })
+          })
+          this.vuexProjectLoad()
+          this.table.data = []
+          this.$message({
+            message: '导入成功',
+            type: 'success'
+          })
+          break
+        default:
+          break
+      }
     }
   }
 }

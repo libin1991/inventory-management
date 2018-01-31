@@ -18,7 +18,7 @@ export default {
         .then(this.vuexLoadAll)
     },
     upload () {
-      this.vuexSyncUploadToWilddog()
+      this.vuexUpload()
         .then(() => {
           this.$message({
             message: '数据已经备份到云端',

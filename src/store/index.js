@@ -11,6 +11,12 @@ const sync = wilddog.initializeApp({
   syncURL: key.wilddog.syncURL
 }).sync()
 
+const vuexUpload = (state) => {
+  return sync.ref('data/backup').push({
+    projects: state.vuexProjects
+  })
+}
+
 const db = low(new LocalStorage('db'))
 db._.mixin(lodashId)
 
@@ -42,10 +48,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    vuexSyncUploadToWilddog (context) {
-      return sync.ref('data/backup').push({
-        projects: context.state.vuexProjects
-      })
+    // [整体] 将本地数据库备份到云端
+    vuexUpload (context) {
+      return vuexUpload(context.state)
     },
     // [整体] 重置数据库中的数据
     vuexResetAll (context) {

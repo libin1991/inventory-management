@@ -12,13 +12,13 @@
       <div style="width: 300px;">
         <span style="float: left">
           {{ item.label }}
-          <span class="project-select-num">
-            {{item.num === 0 ? '无' : item.num}}
+          <span
+            class="project-select-num"
+            :class="item.num === 0 ? 'none' : ''">
+            {{item.num === 0 ? '无存货' : item.num}}
           </span>
         </span>
-        <span style="float: right; color: #8492a6; font-size: 13px">
-          ¥{{item.price}}
-        </span>
+        <span style="float: right; color: #8492a6; font-size: 13px">¥{{item.price}}</span>
       </div>
     </el-option>
   </el-select>
@@ -58,10 +58,13 @@ export default {
 
 <style lang="scss">
 .project-select-num {
-  background-color: rgb(132, 146, 166);
+  background-color: #909399;
   color: #FFF;
   padding: 0px 6px;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 12px;
+  &.none {
+    background-color: #F56C6C;
+  }
 }
 </style>

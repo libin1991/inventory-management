@@ -20,8 +20,12 @@ export default [
     icon: 'el-icon-menu',
     children: [
       {
-        label: '数据',
+        label: '备份与还原',
         value: 'setting-db'
+      },
+      {
+        label: '数据导入',
+        value: 'setting-import'
       }
     ]
   }

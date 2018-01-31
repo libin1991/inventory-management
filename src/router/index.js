@@ -36,6 +36,11 @@ export default new Router({
           path: 'setting/db',
           name: 'setting-db',
           component: resolve => { require(['@/page/setting/db/index.vue'], resolve) }
+        },
+        {
+          path: 'setting/import',
+          name: 'setting-import',
+          component: resolve => { require(['@/page/setting/import/index.vue'], resolve) }
         }
       ]
     }

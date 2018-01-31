@@ -3,6 +3,13 @@ import Vuex from 'vuex'
 import low from 'lowdb'
 import lodashId from 'lodash-id'
 import LocalStorage from 'lowdb/adapters/LocalStorage'
+import wilddog from 'wilddog'
+import key from '@/key.js'
+
+// 野狗
+const sync = wilddog.initializeApp({
+  syncURL: key.wilddog.syncURL
+}).sync()
 
 const db = low(new LocalStorage('db'))
 db._.mixin(lodashId)
@@ -35,6 +42,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    vuexSyncUploadToWilddog (context) {
+      return sync.ref('data/backup').push({
+        projects: context.state.vuexProjects
+      })
+    },
     // [整体] 重置数据库中的数据
     vuexResetAll (context) {
       return new Promise((resolve, reject) => {

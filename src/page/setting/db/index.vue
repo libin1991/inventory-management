@@ -18,12 +18,13 @@ export default {
         .then(this.vuexLoadAll)
     },
     upload () {
-      console.group('备份数据库到云端')
-      this.$sync.ref('data/backup').push({
-        projects: this.vuexProjects
-      })
-      console.log('还没做')
-      console.groupEnd()
+      this.vuexSyncUploadToWilddog()
+        .then(() => {
+          this.$message({
+            message: '数据已经备份到云端',
+            type: 'success'
+          })
+        })
     }
   }
 }

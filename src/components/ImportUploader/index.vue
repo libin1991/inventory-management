@@ -13,7 +13,7 @@
       <el-table
         v-bind="table"
         style="width: 100%"
-        max-height="300">
+        max-height="200">
         <el-table-column
           v-for="(item, index) in table.columns"
           :key="index"
@@ -22,7 +22,7 @@
         </el-table-column>
       </el-table>
       <br>
-      <el-button type="success" @click="handleImport">确定导入</el-button>
+      <el-button type="success" @click="handleImport">确定导入{{table.data.length}}条数据</el-button>
     </template>
   </div>
 </template>

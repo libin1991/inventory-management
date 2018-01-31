@@ -47,6 +47,7 @@ export default new Vuex.Store({
         .get('projects')
         .insert({
           ...item,
+          num: 0,
           delFlag: false
         })
         .write()
@@ -55,7 +56,9 @@ export default new Vuex.Store({
     vuexProjectsDelete (state, id) {
       db
         .get('projects')
-        .find({id: id})
+        .find({
+          id: id
+        })
         .assign({delFlag: true})
         .write()
     },
@@ -63,7 +66,9 @@ export default new Vuex.Store({
     vuexProjectsUpdate (state, item) {
       db
         .get('projects')
-        .find({id: item.id})
+        .find({
+          id: item.id
+        })
         .assign(item)
         .write()
     },
@@ -72,7 +77,6 @@ export default new Vuex.Store({
       state.vuexProjects = (
         db
           .get('projects')
-          .sortBy('id')
           .value() || []
       ).reverse()
     },

@@ -9,7 +9,12 @@
       </el-button>
     </div>
     <br>
-    <Xform v-model="form" @submit="handleSave"></Xform>
+    <el-alert
+      title="如果修改价格请新建物品记录"
+      type="info">
+    </el-alert>
+    <br>
+    <Xform v-model="form" @submit="handleSave" mode="edit"></Xform>
   </Container>
 </template>
 
@@ -26,9 +31,7 @@ export default {
   data () {
     return {
       form: {
-        name: '物品名称',
-        price: 1,
-        num: 0
+        name: '物品名称'
       }
     }
   },
@@ -48,8 +51,6 @@ export default {
       if (this.id) {
         const project = this.vuexProjects.find(e => e.id === this.id)
         this.form.name = project.name
-        this.form.price = project.price
-        this.form.num = project.num
       } else {
         this.handleBack()
       }

@@ -9,7 +9,7 @@
       :key="item.value"
       :label="item.label"
       :value="item.value">
-      <div style="width: 200px;">
+      <div style="width: 300px;">
         <span style="float: left">
           {{ item.label }}
           <span class="project-select-num">

@@ -3,11 +3,8 @@
     <el-form-item label="名称">
       <el-input v-model="currentValue.name" placeholder="名称"></el-input>
     </el-form-item>
-    <el-form-item label="价格">
+    <el-form-item v-if="mode === 'new'" label="价格">
       <el-input-number v-model="currentValue.price" :step="0.1"></el-input-number>
-    </el-form-item>
-    <el-form-item label="数量">
-      <el-input-number v-model="currentValue.num" :step="1"></el-input-number>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="handleSubmit">保存</el-button>
@@ -26,6 +23,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    mode: {
+      type: String,
+      required: false,
+      default: 'new'
     }
   },
   data () {

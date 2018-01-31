@@ -11,7 +11,7 @@
       :value="item.value">
       <div style="width: 300px;">
         <span style="float: left">
-          {{ item.label }}
+          {{item.label}}
           <span
             class="project-select-num"
             :class="item.num === 0 ? 'none' : ''">

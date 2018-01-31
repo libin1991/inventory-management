@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import db from '@/mixins/db.js'
+import vuex from '@/mixins/vuex.js'
 export default {
   mixins: [
-    db
+    vuex
   ],
   mounted () {
     this.vuexLoadAll()

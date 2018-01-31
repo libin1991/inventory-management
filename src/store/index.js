@@ -10,16 +10,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // 商品列表
-    projects: []
+    vuexProjects: []
   },
   mutations: {
     // 从数据库重新读商品列表
     vuexProjectLoad (state) {
-      state.projects = db
+      state.vuexProjects = db
         .get('projects')
         .filter({delFlag: false})
         .sortBy('id')
         .value() || []
+      // 倒序
+      state.vuexProjects.reverse()
     },
     // 清空数据库中的商品表
     vuexProjectReset (state) {
@@ -49,7 +51,7 @@ export default new Vuex.Store({
         .get('projects')
         .push({
           ...item,
-          id: context.state.projects.length,
+          id: context.state.vuexProjects.length,
           delFlag: false
         })
         .write()

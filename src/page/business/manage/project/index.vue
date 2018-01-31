@@ -1,18 +1,32 @@
 <template>
   <Container>
-    <div>
-      {{addForm}}
-    </div>
     <Xform v-model="addForm" @submit="save"></Xform>
+    <el-table
+      :data="vuexProjects"
+      style="width: 100%"
+      max-height="400"
+      size="mini"
+      stripe
+      border>
+      <el-table-column prop="id" label="ID" width="100" align="center"></el-table-column>
+      <el-table-column prop="name" label="名称"></el-table-column>
+      <el-table-column prop="price" label="价格"></el-table-column>
+      <el-table-column label="操作" width="160" align="center">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </Container>
 </template>
 
 <script>
-import db from '@/mixins/db.js'
+import vuex from '@/mixins/vuex.js'
 import Xform from './components/Form'
 export default {
   mixins: [
-    db
+    vuex
   ],
   components: {
     Xform
@@ -22,13 +36,18 @@ export default {
       addForm: {
         name: '物品名称',
         price: 1
-      },
-      projects: []
+      }
     }
   },
   methods: {
     save () {
       this.vuexProjectsPush(this.addForm)
+    },
+    handleEdit (index, row) {
+
+    },
+    handleDelete (index, row) {
+
     }
   }
 }

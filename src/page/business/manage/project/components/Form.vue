@@ -7,7 +7,7 @@
       <el-input-number v-model="currentValue.price" :step="0.1"></el-input-number>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submitHandler">保存</el-button>
+      <el-button type="primary" @click="handleSubmit">保存</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    submitHandler () {
+    handleSubmit () {
       this.$emit('submit', this.currentValue)
     }
   }

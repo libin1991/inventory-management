@@ -1,7 +1,7 @@
 <template>
   <el-menu
     default-active="2"
-    @select="selectHandler"
+    @select="selectHandle"
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b">
@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    selectHandler (index, path) {
+    selectHandle (index, path) {
       this.$router.push({
         name: index
       })

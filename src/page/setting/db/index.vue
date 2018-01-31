@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import db from '@/mixins/db.js'
+import vuex from '@/mixins/vuex.js'
 export default {
   mixins: [
-    db
+    vuex
   ],
   methods: {
     // 初始化本地数据库

@@ -20,7 +20,7 @@ export default {
     },
     currentValue: {
       handler (value) {
-        console.group('currentValue handler')
+        console.group('currentValue handle')
         if (typeof value === 'object') {
           console.log('value 是对象类型')
           if (JSON.stringify(value) !== JSON.stringify(this.value)) {

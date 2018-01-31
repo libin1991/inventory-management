@@ -62,8 +62,11 @@ export default {
     },
     // 保存
     handleSave () {
-      // this.vuexProjectsPush(this.form)
-      this.vuexProjectLoad()
+      this.vuexProjectsUpdate({
+        id: this.id,
+        ...this.form
+      })
+      this.handleBack()
     }
   }
 }

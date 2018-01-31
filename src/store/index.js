@@ -51,12 +51,20 @@ export default new Vuex.Store({
         })
         .write()
     },
-    // [物品列表] 删
+    // [物品列表] 删 (只是标记删除)
     vuexProjectsDelete (state, id) {
       db
         .get('projects')
         .find({id: id})
         .assign({delFlag: true})
+        .write()
+    },
+    // [物品列表] 改
+    vuexProjectsUpdate (state, item) {
+      db
+        .get('projects')
+        .find({id: item.id})
+        .assign(item)
         .write()
     },
     // [物品列表] 载入

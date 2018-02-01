@@ -6,7 +6,7 @@
       :before-upload="handleUpload"
       class="import-uploader">
       <i class="el-icon-upload"></i>
-      <div class="el-upload__text">将 CSV 文件拖到此处，或 <em>点击上传</em></div>
+      <div class="el-upload__text">将{{name}}数据CSV文件拖到此处，或 <em>点击上传</em></div>
     </el-upload>
     <template v-if="table.data.length > 0">
       <br>
@@ -73,7 +73,7 @@ export default {
       })
       return false
     },
-    // 确定导入
+    // 用户触发导入
     handleImport () {
       this.$confirm(`导入数据会覆盖已有${this.name}数据`, '提示', {
         confirmButtonText: '确定',

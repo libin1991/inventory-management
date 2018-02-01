@@ -102,6 +102,7 @@ export default {
               num: Number(e.num)
             })
           })
+          this.vuexProjectLoad()
           this.handleImportFinish()
           break
         default:
@@ -110,7 +111,6 @@ export default {
     },
     // 在导入完成后执行的程序
     handleImportFinish () {
-      this.vuexProjectLoad()
       this.table.data = []
       this.$message({
         message: `导入${this.name}数据成功`,

@@ -47,6 +47,7 @@ export default {
       // })
       console.log(this.form)
       this.vuexHistoryInPush(this.form)
+      this.vuexHistoryInLoad()
     }
   }
 }

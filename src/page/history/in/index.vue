@@ -14,6 +14,11 @@
         </template>
       </el-table-column>
       <el-table-column prop="num" label="数量"></el-table-column>
+      <el-table-column prop="date" label="日期">
+        <template slot-scope="scope">
+          {{String(scope.row.date)}}
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>

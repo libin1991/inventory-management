@@ -16,9 +16,7 @@ const sync = wilddog.initializeApp({
 // 上传数据
 const vuexUpload = (state) => {
   return new Promise((resolve, reject) => {
-    sync.ref('data/backup').push({
-      projects: state.vuexProjects
-    })
+    sync.ref('data/backup').push(state)
       .then(() => {
         console.log('数据已经上传到 data/backup')
         resolve()

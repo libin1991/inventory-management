@@ -10,7 +10,7 @@
       border>
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="price" label="价格"></el-table-column>
-      <el-table-column prop="num" label="当前存量"></el-table-column>
+      <el-table-column prop="num" label="当前数量"></el-table-column>
       <el-table-column label="操作" width="220" align="center">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleCopy(scope.$index, scope.row)">复制</el-button>
@@ -51,7 +51,6 @@ export default {
     handleCopy (index, row) {
       this.form.name = row.name
       this.form.price = row.price
-      // 这里就不复制存量了
     },
     // 编辑
     handleEdit (index, row) {

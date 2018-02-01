@@ -93,6 +93,7 @@ export default {
       // 返回传入对象的为空值的key名字数组
       const emptyKey = row => Object.keys(row).filter(e => row[e] === '')
       switch (this.type) {
+        // 物品
         case 'projects':
           this.vuexProjectReset()
           this.table.data.filter(e => emptyKey(e).length === 0).forEach(e => {

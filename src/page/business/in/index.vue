@@ -39,15 +39,14 @@ export default {
   },
   methods: {
     handleSubmit (formName) {
-      // this.$refs[formName].validate((valid) => {
-      //   if (valid) {
-      //   } else {
-      //     return false
-      //   }
-      // })
-      console.log(this.form)
-      this.vuexHistoryInPush(this.form)
-      this.vuexHistoryInLoad()
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.vuexHistoryInPush(this.form)
+          this.vuexHistoryInLoad()
+        } else {
+          return false
+        }
+      })
     }
   }
 }

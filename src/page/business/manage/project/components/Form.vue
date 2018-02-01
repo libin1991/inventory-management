@@ -6,7 +6,7 @@
     <el-form-item v-if="mode === 'new'" label="价格">
       <el-input-number v-model="currentValue.price" :step="0.1"></el-input-number>
     </el-form-item>
-    <el-form-item v-if="mode === 'new'" label="初始数量">
+    <el-form-item v-if="mode === 'new'" label="数量">
       <el-input-number v-model="currentValue.num" :step="1"></el-input-number>
     </el-form-item>
     <el-form-item>

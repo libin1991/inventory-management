@@ -32,12 +32,18 @@ db._.mixin(lodashId)
 export default new Vuex.Store({
   state: {
     // [物品列表] 全部
-    vuexProjects: []
+    vuexProjects: [],
+    // [历史 入库] 全部
+    vuexHistoryIn: []
   },
   getters: {
     // [物品列表] 有效
     vuexProjectsValid: state => {
       return state.vuexProjects.filter(e => !e.delFlag)
+    },
+    // [历史 入库] 有效
+    vuexHistoryInValid: state => {
+      return state.vuexHistoryIn.filter(e => !e.delFlag)
     }
   },
   mutations: {
@@ -83,6 +89,31 @@ export default new Vuex.Store({
     vuexProjectReset (state) {
       db.set('projects', [])
         .write()
+    },
+    // ----------------------------------------------------------------------------------------------------
+    // [历史 入库] 增
+    vuexHistoryInPush (state, item) {
+      console.log(item)
+      db
+        .get('historyIn')
+        .insert({
+          ...item,
+          delFlag: false
+        })
+        .write()
+    },
+    // [物品列表] 载入
+    vuexHistoryInLoad (state) {
+      state.vuexHistoryIn = (
+        db
+          .get('historyIn')
+          .value() || []
+      ).reverse()
+    },
+    // [历史 入库] 清空
+    vuexHistoryInReset (state) {
+      db.set('historyIn', [])
+        .write()
     }
   },
   actions: {
@@ -94,6 +125,7 @@ export default new Vuex.Store({
     vuexResetAll (context) {
       return new Promise((resolve, reject) => {
         context.commit('vuexProjectReset')
+        context.commit('vuexHistoryInReset')
         resolve()
       })
     },
@@ -101,6 +133,7 @@ export default new Vuex.Store({
     vuexLoadAll (context) {
       return new Promise((resolve, reject) => {
         context.commit('vuexProjectLoad')
+        // context.commit('vuexHistoryInLoad')
         resolve()
       })
     },

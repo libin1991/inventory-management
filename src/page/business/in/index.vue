@@ -7,12 +7,19 @@
       <el-form-item label="数量" prop="num">
         <el-input-number v-model="form.num" :step="10"></el-input-number>
       </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="handleSubmit('form')">保存</el-button>
+      </el-form-item>
     </el-form>
   </Container>
 </template>
 
 <script>
+import vuex from '@/mixins/vuex.js'
 export default {
+  mixins: [
+    vuex
+  ],
   data () {
     return {
       form: {
@@ -31,18 +38,15 @@ export default {
     }
   },
   methods: {
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    handleSubmit (formName) {
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //   } else {
+      //     return false
+      //   }
+      // })
+      console.log(this.form)
+      this.vuexHistoryInPush(this.form)
     }
   }
 }

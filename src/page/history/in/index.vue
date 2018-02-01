@@ -1,6 +1,7 @@
 <template>
   <Container>
     <el-table
+      v-if="tableShow"
       :data="vuexHistoryInValid"
       style="width: 100%"
       max-height="500"
@@ -9,7 +10,7 @@
       border>
       <el-table-column prop="id" label="ID">
         <template slot-scope="scope">
-          <DickProjectName :value="scope.row.project"></DickProjectName>
+          {{dictProject(scope.row.project)}}
         </template>
       </el-table-column>
       <el-table-column prop="num" label="数量"></el-table-column>
@@ -25,10 +26,20 @@
 
 <script>
 import vuex from '@/mixins/vuex.js'
+import dict from '@/mixins/dict.js'
 export default {
   mixins: [
-    vuex
+    vuex,
+    dict
   ],
+  data () {
+    return {
+      tableShow: false
+    }
+  },
+  mounted () {
+    this.tableShow = true
+  },
   methods: {
     handleEdit () {},
     handleDelete () {}

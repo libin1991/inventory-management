@@ -4,4 +4,3 @@ Vue.component('Container', resolve => { require(['@/components/Container/index.v
 
 Vue.component('ProjectSelect', resolve => { require(['@/components/ProjectSelect/index.vue'], resolve) })
 Vue.component('ImportUploader', resolve => { require(['@/components/ImportUploader/index.vue'], resolve) })
-Vue.component('DickProjectName', resolve => { require(['@/components/DickProjectName/index.vue'], resolve) })

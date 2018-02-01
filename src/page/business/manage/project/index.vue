@@ -45,7 +45,7 @@ export default {
     // 保存
     handleSave () {
       this.vuexProjectsPush(this.form)
-      this.vuexProjectLoad()
+      this.vuexProjectsLoad()
     },
     // 复制
     handleCopy (index, row) {
@@ -69,7 +69,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.vuexProjectsDelete(row.id)
-        this.vuexProjectLoad()
+        this.vuexProjectsLoad()
         this.$message({
           type: 'success',
           message: '删除成功!'

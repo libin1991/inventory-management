@@ -103,7 +103,7 @@ export default {
               num: Number(e.num)
             })
           })
-          this.vuexProjectLoad()
+          this.vuexProjectsLoad()
           this.handleImportFinish()
           break
         default:

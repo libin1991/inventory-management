@@ -77,8 +77,18 @@ export default new Vuex.Store({
         .assign(item)
         .write()
     },
+    // [物品列表] 改存量 id是物品id change是表示变化的数字
+    vuexProjectsUpdateNum (state, {id, change}) {
+      db
+        .get('projects')
+        .find({
+          id: id
+        })
+        .update('num', n => n + change)
+        .write()
+    },
     // [物品列表] 载入
-    vuexProjectLoad (state) {
+    vuexProjectsLoad (state) {
       state.vuexProjects = (
         db
           .get('projects')
@@ -132,7 +142,7 @@ export default new Vuex.Store({
     // [整体] 从数据库中载入所有需要的数据
     vuexLoadAll (context) {
       return new Promise((resolve, reject) => {
-        context.commit('vuexProjectLoad')
+        context.commit('vuexProjectsLoad')
         // context.commit('vuexHistoryInLoad')
         resolve()
       })

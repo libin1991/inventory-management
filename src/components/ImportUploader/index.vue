@@ -35,10 +35,15 @@ export default {
     vuex
   ],
   props: {
-    name: {
+    type: {
       type: String,
       required: false,
       default: 'projects'
+    },
+    name: {
+      type: String,
+      required: false,
+      default: '物品'
     }
   },
   data () {
@@ -70,9 +75,24 @@ export default {
     },
     // 确定导入
     handleImport () {
-      // 返回传入对象的为空值的keyName数组
+      this.$confirm(`导入数据会覆盖已有${this.name}数据`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.import()
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消导入'
+        })
+      })
+    },
+    // 导入程序
+    import () {
+      // 返回传入对象的为空值的key名字数组
       const emptyKey = row => Object.keys(row).filter(e => row[e] === '')
-      switch (this.name) {
+      switch (this.type) {
         case 'projects':
           this.vuexProjectReset()
           this.table.data.filter(e => emptyKey(e).length === 0).forEach(e => {
@@ -82,16 +102,20 @@ export default {
               num: Number(e.num)
             })
           })
-          this.vuexProjectLoad()
-          this.table.data = []
-          this.$message({
-            message: '导入成功',
-            type: 'success'
-          })
+          this.handleImportFinish()
           break
         default:
           break
       }
+    },
+    // 在导入完成后执行的程序
+    handleImportFinish () {
+      this.vuexProjectLoad()
+      this.table.data = []
+      this.$message({
+        message: `导入${this.name}数据成功`,
+        type: 'success'
+      })
     }
   }
 }

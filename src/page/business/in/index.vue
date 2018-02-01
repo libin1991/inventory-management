@@ -4,7 +4,7 @@
       <el-form-item label="数量" prop="num">
         <el-date-picker
           v-model="form.date"
-          type="date"
+          type="datetime"
           placeholder="选择日期"
           :clearable="false"
           :picker-options="pickerOptions">
@@ -80,7 +80,10 @@ export default {
           })
           this.vuexProjectsLoad()
           // 历史
-          this.vuexHistoryInPush(this.form)
+          this.vuexHistoryInPush({
+            ...this.form,
+            creatDate: new Date()
+          })
           this.vuexHistoryInLoad()
           // 结束
           this.form.project = null

@@ -9,15 +9,14 @@
       stripe
       border>
       <el-table-column prop="id" label="ID">
-        <template slot-scope="scope">
-          {{dictProject(scope.row.project)}}
-        </template>
+        <template slot-scope="scope">{{dictProject(scope.row.project)}}</template>
       </el-table-column>
       <el-table-column prop="num" label="数量"></el-table-column>
-      <el-table-column prop="date" label="日期">
-        <template slot-scope="scope">
-          {{String(scope.row.date)}}
-        </template>
+      <el-table-column prop="date" label="入库日期">
+        <template slot-scope="scope">{{mo(scope.row.date)}}</template>
+      </el-table-column>
+      <el-table-column prop="creatDate" label="创建日期">
+        <template slot-scope="scope">{{mo(scope.row.creatDate)}}</template>
       </el-table-column>
       <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">
@@ -30,8 +29,10 @@
 </template>
 
 <script>
+import moment from 'moment'
 import vuex from '@/mixins/vuex.js'
 import dict from '@/mixins/dict.js'
+moment.lang('zh-cn')
 export default {
   mixins: [
     vuex,
@@ -46,6 +47,9 @@ export default {
     this.tableShow = true
   },
   methods: {
+    mo (date) {
+      return moment(date).format('YYYY年MMMMDo dddd h:mm:ss a')
+    },
     handleEdit () {},
     handleDelete () {}
   }

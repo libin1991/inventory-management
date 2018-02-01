@@ -32,7 +32,7 @@
 import moment from 'moment'
 import vuex from '@/mixins/vuex.js'
 import dict from '@/mixins/dict.js'
-moment.lang('zh-cn')
+moment.locale('zh-cn')
 export default {
   mixins: [
     vuex,
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     mo (date) {
-      return moment(date).format('YYYY年MMMMDo dddd h:mm:ss a')
+      return moment(Date.parse(date)).format('YYYY年MMMMDo dddd h:mm:ss a')
     },
     handleEdit () {},
     handleDelete () {}

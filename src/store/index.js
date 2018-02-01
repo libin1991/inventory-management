@@ -101,7 +101,6 @@ export default new Vuex.Store({
     // ----------------------------------------------------------------------------------------------------
     // [历史 入库] 增
     vuexHistoryInPush (state, item) {
-      console.log(item)
       db
         .get('historyIn')
         .insert({

@@ -1,7 +1,7 @@
 <template>
   <Container>
     <el-form :model="form" :rules="rules" ref="form">
-      <el-form-item label="数量" prop="num">
+      <el-form-item label="日期" prop="num">
         <el-date-picker
           v-model="form.date"
           type="datetime"
@@ -82,7 +82,8 @@ export default {
           // 历史
           this.vuexHistoryInPush({
             ...this.form,
-            creatDate: new Date()
+            date: String(this.form.date),
+            creatDate: String(new Date())
           })
           this.vuexHistoryInLoad()
           // 结束

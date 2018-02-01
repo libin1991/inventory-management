@@ -21,7 +21,7 @@ export default [
     children: [
       {
         label: '入库历史',
-        value: 'business-history-in'
+        value: 'history-in'
       }
     ]
   },

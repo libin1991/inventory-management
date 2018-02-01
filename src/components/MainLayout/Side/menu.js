@@ -15,6 +15,17 @@ export default [
     ]
   },
   {
+    label: '历史记录',
+    value: 'history',
+    icon: 'el-icon-menu',
+    children: [
+      {
+        label: '入库历史',
+        value: 'business-history-in'
+      }
+    ]
+  },
+  {
     label: '设置',
     value: 'setting',
     icon: 'el-icon-menu',

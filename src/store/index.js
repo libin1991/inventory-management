@@ -143,7 +143,7 @@ export default new Vuex.Store({
     vuexLoadAll (context) {
       return new Promise((resolve, reject) => {
         context.commit('vuexProjectsLoad')
-        // context.commit('vuexHistoryInLoad')
+        context.commit('vuexHistoryInLoad')
         resolve()
       })
     },

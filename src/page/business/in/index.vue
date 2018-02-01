@@ -1,6 +1,15 @@
 <template>
   <Container>
     <el-form :model="form" :rules="rules" ref="form">
+      <el-form-item label="数量" prop="num">
+        <el-date-picker
+          v-model="form.date"
+          align="right"
+          type="date"
+          placeholder="选择日期"
+          :picker-options="pickerOptions">
+        </el-date-picker>
+      </el-form-item>
       <el-form-item label="物品" prop="project">
         <ProjectSelect v-model="form.project"></ProjectSelect>
       </el-form-item>
@@ -23,16 +32,39 @@ export default {
   data () {
     return {
       form: {
+        date: new Date(),
         project: null,
         num: 1
       },
       rules: {
+        date: [
+          { required: true, message: '请输入日期', trigger: 'blur' }
+        ],
         project: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' }
+          { required: true, message: '请输入物品名称', trigger: 'blur' }
         ],
         num: [
-          { required: true, message: '请输入活动名称', trigger: 'change' },
-          { type: 'number', min: 1, message: '最小是1', trigger: 'change' }
+          { required: true, message: '请输入物品数量', trigger: 'change' },
+          { type: 'number', min: 1, message: '物品数量最小为1', trigger: 'change' }
+        ]
+      },
+      pickerOptions: {
+        disabledDate: time => time.getTime() > Date.now(),
+        shortcuts: [
+          {
+            text: '今天',
+            onClick (picker) {
+              picker.$emit('pick', new Date())
+            }
+          },
+          {
+            text: '昨天',
+            onClick (picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit('pick', date)
+            }
+          }
         ]
       }
     }

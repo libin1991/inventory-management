@@ -4,9 +4,9 @@
       <el-form-item label="数量" prop="num">
         <el-date-picker
           v-model="form.date"
-          align="right"
           type="date"
           placeholder="选择日期"
+          :clearable="false"
           :picker-options="pickerOptions">
         </el-date-picker>
       </el-form-item>

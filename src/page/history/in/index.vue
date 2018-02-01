@@ -7,7 +7,11 @@
       size="mini"
       stripe
       border>
-      <el-table-column prop="id" label="ID"></el-table-column>
+      <el-table-column prop="id" label="ID">
+        <template slot-scope="scope">
+          <DickProjectName :value="scope.row.project"></DickProjectName>
+        </template>
+      </el-table-column>
       <el-table-column prop="num" label="数量"></el-table-column>
       <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">

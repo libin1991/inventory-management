@@ -25,6 +25,7 @@ export default {
       reader.onload = (res) => {
         const result = JSON.parse(res.target.result)
         const state = JSON.parse(result.jsonStr)
+        console.log(state)
         this.vuexDefault(state)
         this.vuexLoadAll()
       }

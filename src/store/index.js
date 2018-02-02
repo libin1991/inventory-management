@@ -51,14 +51,14 @@ export default new Vuex.Store({
     // [整体] 完全赋值
     vuexDefault (state, item) {
       db
-        .defaults(item)
+        .setState(item)
         .write()
     },
     // ----------------------------------------------------------------------------------------------------
     // [物品列表] 增
     vuexProjectsPush (state, item) {
       db
-        .get('projects')
+        .get('vuexProjects')
         .insert({
           ...item,
           delFlag: false
@@ -68,7 +68,7 @@ export default new Vuex.Store({
     // [物品列表] 删 (只是标记删除)
     vuexProjectsDelete (state, id) {
       db
-        .get('projects')
+        .get('vuexProjects')
         .find({
           id: id
         })
@@ -78,7 +78,7 @@ export default new Vuex.Store({
     // [物品列表] 改
     vuexProjectsUpdate (state, item) {
       db
-        .get('projects')
+        .get('vuexProjects')
         .find({
           id: item.id
         })
@@ -88,7 +88,7 @@ export default new Vuex.Store({
     // [物品列表] 改存量 id是物品id change是表示变化的数字
     vuexProjectsUpdateNum (state, {id, change}) {
       db
-        .get('projects')
+        .get('vuexProjects')
         .find({
           id: id
         })
@@ -99,20 +99,20 @@ export default new Vuex.Store({
     vuexProjectsLoad (state) {
       state.vuexProjects = (
         db
-          .get('projects')
+          .get('vuexProjects')
           .value() || []
       ).reverse()
     },
     // [物品列表] 清空
     vuexProjectReset (state) {
-      db.set('projects', [])
+      db.set('vuexProjects', [])
         .write()
     },
     // ----------------------------------------------------------------------------------------------------
     // [历史 入库] 增
     vuexHistoryInPush (state, item) {
       db
-        .get('historyIn')
+        .get('vuexHistoryIn')
         .insert({
           ...item,
           delFlag: false
@@ -123,13 +123,13 @@ export default new Vuex.Store({
     vuexHistoryInLoad (state) {
       state.vuexHistoryIn = (
         db
-          .get('historyIn')
+          .get('vuexHistoryIn')
           .value() || []
       ).reverse()
     },
     // [历史 入库] 清空
     vuexHistoryInReset (state) {
-      db.set('historyIn', [])
+      db.set('vuexHistoryIn', [])
         .write()
     }
   },

@@ -1,10 +1,10 @@
 <template>
   <Container>
     <p style="margin-top: 0px;">本地数据</p>
-    <el-button type="danger" @click="handleResetLocalDB">重置本地数据库</el-button>
+    <el-button type="danger" icon="el-icon-delete" @click="handleResetLocalDB">重置本地数据库</el-button>
     <p>云端数据</p>
-    <el-button type="danger" @click="handleClearCloud">清空云端备份</el-button>
-    <el-button type="success" @click="handleUpload">新建云端备份</el-button>
+    <el-button type="danger" icon="el-icon-delete" @click="handleClearCloud">清空云端备份</el-button>
+    <el-button type="success" icon="el-icon-circle-plus-outline" @click="handleUpload">新建云端备份</el-button>
   </Container>
 </template>
 

@@ -12,9 +12,7 @@
       <div style="width: 300px;">
         <span style="float: left">
           {{item.label}}
-          <span
-            class="project-select-num"
-            :class="item.num === 0 ? 'none' : ''">
+          <span class="project-select-num" :class="item.num === 0 ? 'none' : ''">
             {{item.num === 0 ? '无存货' : item.num}}
           </span>
         </span>

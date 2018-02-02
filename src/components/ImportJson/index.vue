@@ -6,7 +6,7 @@
       :before-upload="handleUpload"
       class="import-uploader">
       <i class="el-icon-upload"></i>
-      <div class="el-upload__text">将野狗下载的 .json 文件拖到此处，或 <em>点击上传</em></div>
+      <div class="el-upload__text">将下载的野狗 .json 文件拖到此处，或 <em>点击上传</em></div>
     </el-upload>
   </div>
 </template>

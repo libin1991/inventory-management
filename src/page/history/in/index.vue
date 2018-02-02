@@ -20,12 +20,12 @@
       <el-table-column prop="creatDate" label="创建日期">
         <template slot-scope="scope">{{mo(scope.row.creatDate)}}</template>
       </el-table-column>
-      <el-table-column label="操作" width="160" align="center">
+      <!-- <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
   </Container>
 </template>
@@ -51,9 +51,9 @@ export default {
   methods: {
     mo (date) {
       return moment(Date.parse(date)).format('YYYY年MMMMDo dddd h:mm:ss a')
-    },
-    handleEdit () {},
-    handleDelete () {}
+    }
+    // handleEdit () {},
+    // handleDelete () {}
   }
 }
 </script>

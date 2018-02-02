@@ -15,8 +15,11 @@ const sync = wilddog.initializeApp({
 
 // 上传数据
 const vuexUpload = (state) => {
+  console.log(state)
   return new Promise((resolve, reject) => {
-    sync.ref('data/backup').push(state)
+    sync.ref('data/backup').push({
+      jsonStr: JSON.stringify(state)
+    })
       .then(() => {
         console.log('数据已经上传到 data/backup')
         resolve()
@@ -45,6 +48,13 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    // [整体] 完全赋值
+    vuexDefault (state, item) {
+      db
+        .defaults(item)
+        .write()
+    },
+    // ----------------------------------------------------------------------------------------------------
     // [物品列表] 增
     vuexProjectsPush (state, item) {
       db

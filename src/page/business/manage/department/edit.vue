@@ -49,8 +49,12 @@ export default {
     // 初始化这个页面
     init () {
       if (this.id) {
-        const project = this.vuexProjects.find(e => e.id === this.id)
-        this.form.name = project.name
+        const project = this.vuexDepartments.find(e => e.id === this.id)
+        if (project) {
+          this.form.name = project.name
+        } else {
+          this.handleBack()
+        }
       } else {
         this.handleBack()
       }
@@ -58,12 +62,12 @@ export default {
     // 返回相关的列表页
     handleBack () {
       this.$router.push({
-        name: 'business-manage-project'
+        name: 'business-manage-department'
       })
     },
     // 保存
     handleSave () {
-      this.vuexProjectsUpdate({
+      this.vuexDepartmentsUpdate({
         id: this.id,
         ...this.form
       })

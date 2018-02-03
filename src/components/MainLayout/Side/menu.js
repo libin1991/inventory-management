@@ -11,6 +11,10 @@ export default [
       {
         label: '物品管理',
         value: 'business-manage-project'
+      },
+      {
+        label: '部门管理',
+        value: 'business-manage-department'
       }
     ]
   },

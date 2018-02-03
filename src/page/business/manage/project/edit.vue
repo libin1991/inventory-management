@@ -49,8 +49,12 @@ export default {
     // 初始化这个页面
     init () {
       if (this.id) {
-        const project = this.vuexProjects.find(e => e.id === this.id)
-        this.form.name = project.name
+        const project = this.vuexDepartments.find(e => e.id === this.id)
+        if (project) {
+          this.form.name = project.name
+        } else {
+          this.handleBack()
+        }
       } else {
         this.handleBack()
       }

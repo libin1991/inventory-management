@@ -2,7 +2,7 @@
   <Container>
     <Xform v-model="form" @submit="handleSave"></Xform>
     <el-table
-      :data="vuexProjectsValid"
+      :data="vuexDepartmentsValid"
       style="width: 100%"
       max-height="500"
       size="mini"
@@ -44,8 +44,8 @@ export default {
   methods: {
     // 保存
     handleSave () {
-      this.vuexProjectsPush(this.form)
-      this.vuexProjectsLoad()
+      this.vuexDepartmentsPush(this.form)
+      this.vuexDepartmentsLoad()
     },
     // 复制
     handleCopy (index, row) {
@@ -55,7 +55,7 @@ export default {
     // 编辑
     handleEdit (index, row) {
       this.$router.push({
-        name: 'business-manage-project-edit',
+        name: 'business-manage-department-edit',
         params: {
           id: row.id
         }
@@ -68,8 +68,8 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.vuexProjectsDelete(row.id)
-        this.vuexProjectsLoad()
+        this.vuexDepartmentsDelete(row.id)
+        this.vuexDepartmentsLoad()
         this.$message({
           type: 'success',
           message: '删除成功!'

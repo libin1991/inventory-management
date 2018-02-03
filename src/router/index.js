@@ -33,6 +33,16 @@ export default new Router({
           component: resolve => { require(['@/page/business/manage/project/edit.vue'], resolve) }
         },
         {
+          path: 'business/manage/department',
+          name: 'business-manage-department',
+          component: resolve => { require(['@/page/business/manage/department/index.vue'], resolve) }
+        },
+        {
+          path: 'business/manage/department/edit',
+          name: 'business-manage-department-edit',
+          component: resolve => { require(['@/page/business/manage/department/edit.vue'], resolve) }
+        },
+        {
           path: 'history/in',
           name: 'history-in',
           component: resolve => { require(['@/page/history/in/index.vue'], resolve) }

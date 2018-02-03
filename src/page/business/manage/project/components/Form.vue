@@ -1,7 +1,7 @@
 <template>
   <el-form :inline="true" :model="currentValue" class="demo-form-inline">
-    <el-form-item label="名称">
-      <el-input v-model="currentValue.name" placeholder="名称"></el-input>
+    <el-form-item label="物品名称">
+      <el-input v-model="currentValue.name" placeholder="物品名称"></el-input>
     </el-form-item>
     <el-form-item v-if="mode === 'new'" label="价格">
       <el-input-number v-model="currentValue.price" :step="0.1"></el-input-number>

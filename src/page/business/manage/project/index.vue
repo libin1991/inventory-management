@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       form: {
-        name: '物品名称',
+        name: '',
         price: 1,
         num: 0
       }

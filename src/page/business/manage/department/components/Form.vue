@@ -1,7 +1,7 @@
 <template>
   <el-form :inline="true" :model="currentValue" class="demo-form-inline">
-    <el-form-item label="名称">
-      <el-input v-model="currentValue.name" placeholder="名称"></el-input>
+    <el-form-item label="部门名称">
+      <el-input v-model="currentValue.name" placeholder="请输入部门名称"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="handleSubmit">保存</el-button>

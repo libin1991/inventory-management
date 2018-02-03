@@ -9,11 +9,8 @@
       stripe
       border>
       <el-table-column prop="name" label="名称"></el-table-column>
-      <el-table-column prop="price" label="价格"></el-table-column>
-      <el-table-column prop="num" label="当前数量"></el-table-column>
-      <el-table-column label="操作" width="220" align="center">
+      <el-table-column label="操作" width="160" align="center">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleCopy(scope.$index, scope.row)">复制</el-button>
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
@@ -35,7 +32,7 @@ export default {
   data () {
     return {
       form: {
-        name: '物品名称'
+        name: ''
       }
     }
   },
@@ -44,10 +41,6 @@ export default {
     handleSave () {
       this.vuexDepartmentsPush(this.form)
       this.vuexDepartmentsLoad()
-    },
-    // 复制
-    handleCopy (index, row) {
-      this.form.name = row.name
     },
     // 编辑
     handleEdit (index, row) {

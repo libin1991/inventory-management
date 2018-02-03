@@ -34,6 +34,11 @@ export default {
     value: {
       required: false,
       default: ''
+    },
+    nonempty: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -43,7 +48,8 @@ export default {
   },
   computed: {
     options () {
-      return this.vuexProjectsValid.map(e => ({
+      const projects = this.nonempty ? this.vuexProjectsValid.filter(e => e.num > 0) : this.vuexProjectsValid
+      return projects.map(e => ({
         value: e.id,
         label: e.name,
         price: e.price,

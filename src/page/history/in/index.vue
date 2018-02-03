@@ -2,7 +2,7 @@
   <Container>
     <el-table
       v-if="tableShow"
-      :data="vuexHistoryInValid"
+      :data="vuexHistoryIn"
       style="width: 100%"
       size="mini"
       stripe

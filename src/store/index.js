@@ -37,7 +37,9 @@ export default new Vuex.Store({
     // [部门列表] 全部
     vuexDepartments: [],
     // [历史 入库] 全部
-    vuexHistoryIn: []
+    vuexHistoryIn: [],
+    // [历史 出库] 全部
+    vuexHistoryOut: []
   },
   getters: {
     // [物品列表] 有效
@@ -47,14 +49,6 @@ export default new Vuex.Store({
     // [部门列表] 有效
     vuexDepartmentsValid: state => {
       return state.vuexDepartments.filter(e => !e.delFlag)
-    },
-    // [历史 入库] 有效
-    vuexHistoryInValid: state => {
-      return state.vuexHistoryIn.filter(e => !e.delFlag)
-    },
-    // [历史 出库] 有效
-    vuexHistoryOutValid: state => {
-      return state.vuexHistoryOut.filter(e => !e.delFlag)
     }
   },
   mutations: {

@@ -14,7 +14,7 @@
         <DepartmentSelect v-model="form.department"></DepartmentSelect>
       </el-form-item>
       <el-form-item label="物品" prop="project">
-        <ProjectSelect v-model="form.project"></ProjectSelect>
+        <ProjectSelect v-model="form.project" :nonempty="true"></ProjectSelect>
       </el-form-item>
       <el-form-item label="数量" prop="num">
         <el-input-number v-model="form.num" :step="1"></el-input-number>

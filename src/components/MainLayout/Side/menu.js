@@ -30,6 +30,10 @@ export default [
       {
         label: '入库历史',
         value: 'history-in'
+      },
+      {
+        label: '出库历史',
+        value: 'history-out'
       }
     ]
   },

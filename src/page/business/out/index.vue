@@ -87,12 +87,12 @@ export default {
           })
           this.vuexProjectsLoad()
           // 历史
-          // this.vuexHistoryInPush({
-          //   ...this.form,
-          //   date: String(this.form.date),
-          //   creatDate: String(new Date())
-          // })
-          this.vuexHistoryInLoad()
+          this.vuexHistoryOutPush({
+            ...this.form,
+            date: String(this.form.date),
+            creatDate: String(new Date())
+          })
+          this.vuexHistoryOutLoad()
           // 结束
           this.form.department = null
           this.form.project = null

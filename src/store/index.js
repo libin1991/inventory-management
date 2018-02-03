@@ -51,6 +51,10 @@ export default new Vuex.Store({
     // [历史 入库] 有效
     vuexHistoryInValid: state => {
       return state.vuexHistoryIn.filter(e => !e.delFlag)
+    },
+    // [历史 出库] 有效
+    vuexHistoryOutValid: state => {
+      return state.vuexHistoryOut.filter(e => !e.delFlag)
     }
   },
   mutations: {
@@ -181,6 +185,30 @@ export default new Vuex.Store({
     vuexHistoryInReset (state) {
       db.set('vuexHistoryIn', [])
         .write()
+    },
+    // ----------------------------------------------------------------------------------------------------
+    // [历史 出库] 增
+    vuexHistoryOutPush (state, item) {
+      db
+        .get('vuexHistoryOut')
+        .insert({
+          ...item,
+          delFlag: false
+        })
+        .write()
+    },
+    // [历史 出库] 载入
+    vuexHistoryOutLoad (state) {
+      state.vuexHistoryOut = (
+        db
+          .get('vuexHistoryOut')
+          .value() || []
+      ).reverse()
+    },
+    // [历史 出库] 清空
+    vuexHistoryOutReset (state) {
+      db.set('vuexHistoryOut', [])
+        .write()
     }
   },
   actions: {
@@ -194,6 +222,7 @@ export default new Vuex.Store({
         context.commit('vuexProjectsReset')
         context.commit('vuexDepartmentsReset')
         context.commit('vuexHistoryInReset')
+        context.commit('vuexHistoryOutReset')
         resolve()
       })
     },
@@ -203,6 +232,7 @@ export default new Vuex.Store({
         context.commit('vuexProjectsLoad')
         context.commit('vuexDepartmentsLoad')
         context.commit('vuexHistoryInLoad')
+        context.commit('vuexHistoryOutLoad')
         resolve()
       })
     },

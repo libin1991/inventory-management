@@ -2,18 +2,21 @@
   <Container>
     <el-table
       v-if="tableShow"
-      :data="vuexHistoryInValid"
+      :data="vuexHistoryOutValid"
       style="width: 100%"
       size="mini"
       stripe
       border>
-      <el-table-column prop="id" label="ID">
+      <el-table-column prop="department" label="部门">
+        <template slot-scope="scope">{{dictDepartment(scope.row.department)}}</template>
+      </el-table-column>
+      <el-table-column prop="project" label="物品">
         <template slot-scope="scope">{{dictProject(scope.row.project)}}</template>
       </el-table-column>
       <el-table-column prop="num" label="数量" width="100">
-        <template slot-scope="scope">+ {{scope.row.num}}</template>
+        <template slot-scope="scope">{{scope.row.num}}</template>
       </el-table-column>
-      <el-table-column prop="date" label="入库日期">
+      <el-table-column prop="date" label="出库日期">
         <template slot-scope="scope">{{mo(scope.row.date)}}</template>
       </el-table-column>
       <el-table-column prop="creatDate" label="创建日期">

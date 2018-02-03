@@ -9,6 +9,10 @@ export default [
         value: 'business-in'
       },
       {
+        label: '出库',
+        value: 'business-out'
+      },
+      {
         label: '物品管理',
         value: 'business-manage-project'
       },

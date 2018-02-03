@@ -35,9 +35,7 @@ export default {
   data () {
     return {
       form: {
-        name: '物品名称',
-        price: 1,
-        num: 0
+        name: '物品名称'
       }
     }
   },
@@ -50,7 +48,6 @@ export default {
     // 复制
     handleCopy (index, row) {
       this.form.name = row.name
-      this.form.price = row.price
     },
     // 编辑
     handleEdit (index, row) {

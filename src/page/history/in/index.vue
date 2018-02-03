@@ -16,7 +16,7 @@
       <el-table-column prop="date" label="入库日期">
         <template slot-scope="scope">{{mo(scope.row.date)}}</template>
       </el-table-column>
-      <el-table-column prop="creatDate" label="创建日期">
+      <el-table-column prop="creatDate" label="记录日期">
         <template slot-scope="scope">{{mo(scope.row.creatDate)}}</template>
       </el-table-column>
       <!-- <el-table-column label="操作" width="160" align="center">

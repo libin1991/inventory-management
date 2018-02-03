@@ -4,7 +4,8 @@
     @select="selectHandle"
     background-color="#545c64"
     text-color="#fff"
-    active-text-color="#ffd04b">
+    active-text-color="#ffd04b"
+    :unique-opened="true">
     <!-- 循环 -->
     <template v-for="(menu, menuIndex) in menu">
       <!-- 有子菜单 -->

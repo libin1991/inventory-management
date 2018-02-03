@@ -60,11 +60,6 @@ export default {
   methods: {
     // 获取文件
     handleUpload (file) {
-      // const reader = new FileReader()
-      // reader.readAsText(file)
-      // reader.onload = (res) => {
-      //   console.log(res.target.result)
-      // }
       papa.parse(file, {
         header: true,
         skipEmptyLines: true,
@@ -110,6 +105,18 @@ export default {
             })
           })
           this.vuexProjectsLoad()
+          this.handleImportFinish()
+          break
+        // 部门
+        case 'departments':
+          this.vuexDepartmentsReset()
+          this.table.data.filter(e => emptyKey(e).length === 0).forEach(e => {
+            this.vuexDepartmentsPush({
+              ...e,
+              num: Number(e.num)
+            })
+          })
+          this.vuexDepartmentsLoad()
           this.handleImportFinish()
           break
         default:

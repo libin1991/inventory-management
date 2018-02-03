@@ -34,6 +34,8 @@ export default new Vuex.Store({
   state: {
     // [物品列表] 全部
     vuexProjects: [],
+    // [部门列表] 全部
+    vuexDepartments: [],
     // [历史 入库] 全部
     vuexHistoryIn: []
   },
@@ -41,6 +43,10 @@ export default new Vuex.Store({
     // [物品列表] 有效
     vuexProjectsValid: state => {
       return state.vuexProjects.filter(e => !e.delFlag)
+    },
+    // [部门列表] 有效
+    vuexDepartmentsValid: state => {
+      return state.vuexDepartments.filter(e => !e.delFlag)
     },
     // [历史 入库] 有效
     vuexHistoryInValid: state => {
@@ -104,8 +110,52 @@ export default new Vuex.Store({
       ).reverse()
     },
     // [物品列表] 清空
-    vuexProjectReset (state) {
+    vuexProjectsReset (state) {
       db.set('vuexProjects', [])
+        .write()
+    },
+    // ----------------------------------------------------------------------------------------------------
+    // [部门列表] 增
+    vuexDepartmentsPush (state, item) {
+      db
+        .get('vuexDepartments')
+        .insert({
+          ...item,
+          delFlag: false
+        })
+        .write()
+    },
+    // [部门列表] 删 (只是标记删除)
+    vuexDepartmentsDelete (state, id) {
+      db
+        .get('vuexDepartments')
+        .find({
+          id: id
+        })
+        .assign({delFlag: true})
+        .write()
+    },
+    // [部门列表] 改
+    vuexDepartmentsUpdate (state, item) {
+      db
+        .get('vuexDepartments')
+        .find({
+          id: item.id
+        })
+        .assign(item)
+        .write()
+    },
+    // [部门列表] 载入
+    vuexDepartmentsLoad (state) {
+      state.vuexDepartments = (
+        db
+          .get('vuexDepartments')
+          .value() || []
+      ).reverse()
+    },
+    // [部门列表] 清空
+    vuexDepartmentsReset (state) {
+      db.set('vuexDepartments', [])
         .write()
     },
     // ----------------------------------------------------------------------------------------------------
@@ -119,7 +169,7 @@ export default new Vuex.Store({
         })
         .write()
     },
-    // [物品列表] 载入
+    // [历史 入库] 载入
     vuexHistoryInLoad (state) {
       state.vuexHistoryIn = (
         db
@@ -141,7 +191,8 @@ export default new Vuex.Store({
     // [整体] 重置数据库中的数据
     vuexResetAll (context) {
       return new Promise((resolve, reject) => {
-        context.commit('vuexProjectReset')
+        context.commit('vuexProjectsReset')
+        context.commit('vuexDepartmentsReset')
         context.commit('vuexHistoryInReset')
         resolve()
       })
@@ -150,6 +201,7 @@ export default new Vuex.Store({
     vuexLoadAll (context) {
       return new Promise((resolve, reject) => {
         context.commit('vuexProjectsLoad')
+        context.commit('vuexDepartmentsLoad')
         context.commit('vuexHistoryInLoad')
         resolve()
       })

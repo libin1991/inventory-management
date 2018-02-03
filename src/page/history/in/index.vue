@@ -4,7 +4,6 @@
       v-if="tableShow"
       :data="vuexHistoryInValid"
       style="width: 100%"
-      max-height="500"
       size="mini"
       stripe
       border>

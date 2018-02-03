@@ -101,7 +101,7 @@ export default {
       switch (this.type) {
         // 物品
         case 'projects':
-          this.vuexProjectReset()
+          this.vuexProjectsReset()
           this.table.data.filter(e => emptyKey(e).length === 0).forEach(e => {
             this.vuexProjectsPush({
               ...e,

@@ -41,11 +41,20 @@ export default {
       }
     }
   },
+  computed: {
+    formValid () {
+      return this.form.name &&
+        this.form.price > 0 &&
+        this.form.num >= 0
+    }
+  },
   methods: {
     // 保存
     handleSave () {
-      this.vuexProjectsPush(this.form)
-      this.vuexProjectsLoad()
+      if (this.formValid) {
+        this.vuexProjectsPush(this.form)
+        this.vuexProjectsLoad()
+      }
     },
     // 复制
     handleCopy (index, row) {

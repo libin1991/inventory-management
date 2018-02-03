@@ -36,11 +36,18 @@ export default {
       }
     }
   },
+  computed: {
+    formValid () {
+      return this.form.name
+    }
+  },
   methods: {
     // 保存
     handleSave () {
-      this.vuexDepartmentsPush(this.form)
-      this.vuexDepartmentsLoad()
+      if (this.formValid) {
+        this.vuexDepartmentsPush(this.form)
+        this.vuexDepartmentsLoad()
+      }
     },
     // 编辑
     handleEdit (index, row) {

@@ -1,5 +1,5 @@
 <template>
-  <el-form :inline="true" :model="currentValue" class="demo-form-inline">
+  <el-form :inline="true" :model="currentValue">
     <el-form-item label="物品名称">
       <el-input v-model="currentValue.name" placeholder="物品名称"></el-input>
     </el-form-item>

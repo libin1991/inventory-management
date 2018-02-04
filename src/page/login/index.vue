@@ -36,8 +36,8 @@ export default {
   data () {
     return {
       formLogin: {
-        username: 'jingxin',
-        password: '13456789'
+        username: '1',
+        password: '1'
       },
       rules: {
         username: [
@@ -57,7 +57,8 @@ export default {
     // 提交登陆信息
     submit () {
       const md5Valid = () => {
-        const val = 'db108a87a6dbfa8b13bff0871c9a51e9'
+        // console.log(md5(this.formLogin.username + this.formLogin.password))
+        const val = '6512bd43d9caa6e02c990b0a82652dca'
         return new Promise((resolve, reject) => {
           if (md5(this.formLogin.username + this.formLogin.password) === val) {
             resolve(val)

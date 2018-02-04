@@ -1,5 +1,10 @@
 export default [
   {
+    label: '首页',
+    value: 'index',
+    icon: 'el-icon-menu'
+  },
+  {
     label: '日常业务',
     value: 'business',
     icon: 'el-icon-menu',

@@ -6,6 +6,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/login',
+      name: 'login',
+      component: resolve => { require(['@/page/login.vue'], resolve) }
+    },
+    {
       path: '/',
       component: resolve => { require(['@/components/MainLayout/index.vue'], resolve) },
       redirect: {

@@ -12,6 +12,22 @@ export default {
   ],
   mounted () {
     this.vuexLoadAll()
+      .then(() => {
+        this.$message({
+          message: '本地数据加载成功',
+          type: 'success'
+        })
+      })
+      .catch(err => {
+        console.log(err.message)
+        this.vuexResetAll()
+          .then(() => {
+            this.$message({
+              message: '数据库初始化完成',
+              type: 'success'
+            })
+          })
+      })
   }
 }
 </script>

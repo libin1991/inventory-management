@@ -223,11 +223,15 @@ export default new Vuex.Store({
     // [整体] 从数据库中载入所有需要的数据
     vuexLoadAll (context) {
       return new Promise((resolve, reject) => {
-        context.commit('vuexProjectsLoad')
-        context.commit('vuexDepartmentsLoad')
-        context.commit('vuexHistoryInLoad')
-        context.commit('vuexHistoryOutLoad')
-        resolve()
+        if (Object.keys(db.getState()).length !== 0) {
+          context.commit('vuexProjectsLoad')
+          context.commit('vuexDepartmentsLoad')
+          context.commit('vuexHistoryInLoad')
+          context.commit('vuexHistoryOutLoad')
+          resolve()
+        } else {
+          reject(new Error('本地数据库没有初始化'))
+        }
       })
     },
     // [云数据操作] 清空云端备份

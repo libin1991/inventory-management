@@ -230,7 +230,7 @@ export default new Vuex.Store({
           context.commit('vuexHistoryOutLoad')
           resolve()
         } else {
-          reject(new Error('本地数据库没有初始化'))
+          reject(new Error('本地数据库没有初始化，可能是第一次使用或者清空了浏览器缓存，将会自动初始化本地数据库'))
         }
       })
     },

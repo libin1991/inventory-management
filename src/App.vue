@@ -19,7 +19,10 @@ export default {
         })
       })
       .catch(err => {
-        console.log(err.message)
+        this.$notify({
+          title: '提示',
+          message: err.message
+        })
         this.vuexResetAll()
           .then(() => {
             this.$message({

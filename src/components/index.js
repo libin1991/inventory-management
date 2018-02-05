@@ -7,3 +7,4 @@ Vue.component('DepartmentSelect', resolve => { require(['@/components/Department
 Vue.component('ImportUploader', resolve => { require(['@/components/ImportUploader/index.vue'], resolve) })
 Vue.component('ImportJson', resolve => { require(['@/components/ImportJson/index.vue'], resolve) })
 Vue.component('TableIn', resolve => { require(['@/components/TableIn/index.vue'], resolve) })
+Vue.component('TableOut', resolve => { require(['@/components/TableOut/index.vue'], resolve) })

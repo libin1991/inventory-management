@@ -28,6 +28,17 @@ export default [
     ]
   },
   {
+    label: '报表',
+    value: 'report',
+    icon: 'el-icon-menu',
+    children: [
+      {
+        label: '入库',
+        value: 'report-in'
+      }
+    ]
+  },
+  {
     label: '历史记录',
     value: 'history',
     icon: 'el-icon-menu',

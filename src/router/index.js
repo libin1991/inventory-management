@@ -89,6 +89,12 @@ let router = new Router({
           name: 'setting-import',
           ...metaAuth,
           component: resolve => { require(['@/page/setting/import/index.vue'], resolve) }
+        },
+        {
+          path: 'report/in',
+          name: 'report-in',
+          ...metaAuth,
+          component: resolve => { require(['@/page/report/in/index.vue'], resolve) }
         }
       ]
     }

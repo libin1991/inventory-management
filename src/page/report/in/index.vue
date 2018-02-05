@@ -14,6 +14,9 @@
         <el-tab-pane label="历史记录" name="history">
           <TableIn :data="vuexHistoryInFilter"></TableIn>
         </el-tab-pane>
+        <el-tab-pane label="分类汇总" name="class">
+          分类汇总
+        </el-tab-pane>
       </el-tabs>
     </template>
   </Container>

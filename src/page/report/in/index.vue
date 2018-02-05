@@ -1,61 +1,50 @@
 <template>
   <Container>
     <el-date-picker
-      v-model="date"
-      type="datetimerange"
-      :picker-options="pickerOptions2"
+      v-model="filterDate"
+      type="daterange"
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       align="right">
     </el-date-picker>
-    {{vuexHistoryInFilter}}
+    <template v-if="moStartDate && moEndDate">
+      <el-alert :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据`"></el-alert>
+      <TableIn :data="vuexHistoryInFilter"></TableIn>
+    </template>
   </Container>
 </template>
 
 <script>
 import moment from 'moment'
 import vuex from '@/mixins/vuex.js'
+moment.locale('zh-cn')
 export default {
   mixins: [
     vuex
   ],
   data () {
     return {
-      pickerOptions2: {
-        shortcuts: [{
-          text: '最近一周',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '最近一个月',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '最近三个月',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-            picker.$emit('pick', [start, end])
-          }
-        }]
-      },
-      date: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)]
+      filterDate: []
     }
   },
   computed: {
+    moStartDate () {
+      const date = this.filterDate[0]
+      return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+    },
+    moEndDate () {
+      const date = this.filterDate[1]
+      return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+    },
     vuexHistoryInFilter () {
-      return this.vuexHistoryIn.map(e => {
-        return moment(e.date).format('YYYY MM DD')
+      return this.vuexHistoryIn.filter(e => {
+        const tempDateMo = moment(Date.parse(e.date))
+        if (this.filterDate.length === 2) {
+          return tempDateMo.isBetween(this.filterDate[0], this.filterDate[1])
+        } else {
+          return false
+        }
       })
     }
   }

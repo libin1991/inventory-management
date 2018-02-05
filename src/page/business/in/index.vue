@@ -20,7 +20,6 @@
         <el-button type="primary" @click="handleSubmit('form')">保存</el-button>
       </el-form-item>
     </el-form>
-    {{momentDate}}
   </Container>
 </template>
 

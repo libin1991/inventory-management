@@ -21,7 +21,6 @@ const vuexUpload = (state) => {
       jsonStr: JSON.stringify(state)
     })
       .then(() => {
-        console.log('数据已经上传到 data/backup')
         resolve()
       })
   })

@@ -30,17 +30,25 @@ export default {
   data () {
     return {
       tabs: 'history',
-      filterDate: []
+      filterDate: null
     }
   },
   computed: {
     moStartDate () {
-      const date = this.filterDate[0]
-      return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+      if (this.filterDate) {
+        const date = this.filterDate[0]
+        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+      } else {
+        return false
+      }
     },
     moEndDate () {
-      const date = this.filterDate[1]
-      return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+      if (this.filterDate) {
+        const date = this.filterDate[1]
+        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+      } else {
+        return false
+      }
     },
     vuexHistoryInFilter () {
       return this.vuexHistoryIn.filter(e => {

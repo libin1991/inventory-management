@@ -9,8 +9,12 @@
       align="right">
     </el-date-picker>
     <template v-if="moStartDate && moEndDate">
-      <el-alert :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据`"></el-alert>
-      <TableIn :data="vuexHistoryInFilter"></TableIn>
+      <el-alert :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据`" style="margin: 20px 0px;"></el-alert>
+      <el-tabs v-model="tabs" type="card">
+        <el-tab-pane label="历史记录" name="history">
+          <TableIn :data="vuexHistoryInFilter"></TableIn>
+        </el-tab-pane>
+      </el-tabs>
     </template>
   </Container>
 </template>
@@ -25,6 +29,7 @@ export default {
   ],
   data () {
     return {
+      tabs: 'history',
       filterDate: []
     }
   },

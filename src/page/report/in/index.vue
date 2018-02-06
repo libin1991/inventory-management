@@ -59,10 +59,8 @@ export default {
     vuexHistoryInFilter () {
       return this.vuexHistoryIn.filter(e => {
         const tempDateMo = moment(Date.parse(e.date))
-        if (this.filterDate.length === 2) {
+        if (this.filterDate) {
           return tempDateMo.isBetween(moment(this.filterDate[0]).subtract(1, 'days'), moment(this.filterDate[1]).add(1, 'days'), 'day')
-        } else {
-          return false
         }
       })
     }

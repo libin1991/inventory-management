@@ -3,7 +3,6 @@
     <Xform v-model="form" @submit="handleSave"></Xform>
     <el-table
       :data="vuexProjectsValid"
-      style="width: 100%"
       max-height="500"
       size="mini"
       stripe

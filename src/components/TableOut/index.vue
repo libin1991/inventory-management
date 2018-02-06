@@ -1,7 +1,6 @@
 <template>
   <el-table
     :data="data"
-    style="width: 100%"
     size="mini"
     stripe
     border>
@@ -24,25 +23,20 @@
 </template>
 
 <script>
-import moment from 'moment'
 import vuex from '@/mixins/vuex.js'
 import dict from '@/mixins/dict.js'
-moment.locale('zh-cn')
+import mo from '@/mixins/mo.js'
 export default {
   mixins: [
     vuex,
-    dict
+    dict,
+    mo
   ],
   props: {
     data: {
       type: Array,
       required: false,
       default: () => []
-    }
-  },
-  methods: {
-    mo (date) {
-      return moment(Date.parse(date)).format('YYYY年MMMMDo dddd h:mm:ss a')
     }
   }
 }

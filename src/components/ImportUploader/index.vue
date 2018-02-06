@@ -12,7 +12,6 @@
       <br>
       <el-table
         v-bind="table"
-        style="width: 100%"
         max-height="200">
         <el-table-column
           v-for="(item, index) in table.columns"

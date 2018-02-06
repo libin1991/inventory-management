@@ -5,16 +5,17 @@
       type="daterange"
       range-separator="至"
       start-placeholder="开始日期"
-      end-placeholder="结束日期"
-      align="right">
+      end-placeholder="结束日期">
     </el-date-picker>
     <template v-if="moStartDate && moEndDate">
-      <el-alert :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据`" style="margin: 20px 0px;"></el-alert>
+      <el-alert :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据 (包括起止)`" style="margin: 20px 0px;"></el-alert>
       <el-tabs v-model="tabs" type="card">
         <el-tab-pane label="历史记录" name="history">
           <TableIn :data="vuexHistoryInFilter"></TableIn>
         </el-tab-pane>
-        <el-tab-pane label="分类汇总" name="class">分类汇总</el-tab-pane>
+        <el-tab-pane label="分类汇总" name="class">
+          <ClassView :data="vuexHistoryInFilter"></ClassView>
+        </el-tab-pane>
       </el-tabs>
     </template>
   </Container>
@@ -23,11 +24,15 @@
 <script>
 import moment from 'moment'
 import vuex from '@/mixins/vuex.js'
+import ClassView from './components/ClassView'
 moment.locale('zh-cn')
 export default {
   mixins: [
     vuex
   ],
+  components: {
+    ClassView
+  },
   data () {
     return {
       tabs: 'history',

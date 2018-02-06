@@ -46,6 +46,11 @@ export default {
       if (this.formValid) {
         this.vuexDepartmentsPush(this.form)
         this.vuexDepartmentsLoad()
+      } else {
+        this.$message({
+          type: 'error',
+          message: '数据校验不通过'
+        })
       }
     },
     // 编辑

@@ -16,7 +16,10 @@
             {{item.num === 0 ? '无存货' : item.num}}
           </span>
         </span>
-        <span style="float: right; color: #8492a6; font-size: 13px">¥{{item.price}}</span>
+        <span style="float: right; color: #8492a6; font-size: 13px">
+          ¥{{item.price}}
+          <template v-if="item.unit">/{{item.unit}}</template>
+        </span>
       </div>
     </el-option>
   </el-select>
@@ -53,7 +56,8 @@ export default {
         value: e.id,
         label: e.name,
         price: e.price,
-        num: e.num
+        num: e.num,
+        unit: e.unit
       }))
     }
   }

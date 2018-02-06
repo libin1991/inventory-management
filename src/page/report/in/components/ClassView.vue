@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in projectsClass"
       :key="index">
-      <h1>{{item.id}} 总共 {{add(item.data)}}</h1>
+      <h1>{{item.id}} 共入库{{add(item.data)}}{{item.unit}}</h1>
       <el-table
         :data="item.data"
         size="mini"
@@ -39,6 +39,7 @@ export default {
       return this.vuexProjectsValid.map(e => {
         return {
           id: this.dictProject(e.id),
+          unit: e.unit,
           data: this.data.filter(item => item.project === e.id)
         }
       }).filter(e => e.data.length > 0)

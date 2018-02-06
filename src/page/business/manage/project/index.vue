@@ -10,6 +10,7 @@
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="price" label="价格"></el-table-column>
       <el-table-column prop="num" label="当前数量"></el-table-column>
+      <el-table-column prop="unit" label="单位"></el-table-column>
       <el-table-column label="操作" width="220" align="center">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleCopy(scope.$index, scope.row)">复制</el-button>
@@ -36,7 +37,8 @@ export default {
       form: {
         name: '',
         price: 1,
-        num: 0
+        num: 0,
+        unit: ''
       }
     }
   },
@@ -53,12 +55,18 @@ export default {
       if (this.formValid) {
         this.vuexProjectsPush(this.form)
         this.vuexProjectsLoad()
+      } else {
+        this.$message({
+          type: 'error',
+          message: '数据校验不通过'
+        })
       }
     },
     // 复制
     handleCopy (index, row) {
       this.form.name = row.name
       this.form.price = row.price
+      this.form.unit = row.unit
     },
     // 编辑
     handleEdit (index, row) {

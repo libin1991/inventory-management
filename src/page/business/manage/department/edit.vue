@@ -39,6 +39,10 @@ export default {
     // 这个页面编辑的数据id 从路由参数中传进来
     id () {
       return this.$route.params.id
+    },
+    // 校验
+    formValid () {
+      return this.form.name
     }
   },
   created () {
@@ -67,11 +71,18 @@ export default {
     },
     // 保存
     handleSave () {
-      this.vuexDepartmentsUpdate({
-        id: this.id,
-        ...this.form
-      })
-      this.handleBack()
+      if (this.formValid) {
+        this.vuexDepartmentsUpdate({
+          id: this.id,
+          ...this.form
+        })
+        this.handleBack()
+      } else {
+        this.$message({
+          type: 'error',
+          message: '数据校验不通过'
+        })
+      }
     }
   }
 }

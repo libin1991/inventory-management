@@ -63,7 +63,6 @@ export default {
         header: true,
         skipEmptyLines: true,
         complete: (results, file) => {
-          console.log(results)
           this.table.columns = Object.keys(results.data[0]).map(e => ({
             label: e,
             prop: e

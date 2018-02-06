@@ -9,6 +9,9 @@
     <el-form-item v-if="mode === 'new'" label="数量">
       <el-input-number v-model="currentValue.num" :step="1"></el-input-number>
     </el-form-item>
+    <el-form-item  label="单位">
+      <el-input v-model="currentValue.unit" style="width: 100px;"></el-input>
+    </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="handleSubmit">保存</el-button>
     </el-form-item>

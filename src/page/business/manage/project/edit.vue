@@ -31,7 +31,8 @@ export default {
   data () {
     return {
       form: {
-        name: '物品名称'
+        name: '',
+        unit: ''
       }
     }
   },
@@ -39,6 +40,10 @@ export default {
     // 这个页面编辑的数据id 从路由参数中传进来
     id () {
       return this.$route.params.id
+    },
+    // 校验
+    formValid () {
+      return this.form.name
     }
   },
   created () {
@@ -51,7 +56,8 @@ export default {
       if (this.id) {
         const project = this.vuexProjects.find(e => e.id === this.id)
         if (project) {
-          this.form.name = project.name
+          this.form.name = project.name || ''
+          this.form.unit = project.unit || ''
         } else {
           this.handleBack()
         }
@@ -67,11 +73,18 @@ export default {
     },
     // 保存
     handleSave () {
-      this.vuexProjectsUpdate({
-        id: this.id,
-        ...this.form
-      })
-      this.handleBack()
+      if (this.formValid) {
+        this.vuexProjectsUpdate({
+          id: this.id,
+          ...this.form
+        })
+        this.handleBack()
+      } else {
+        this.$message({
+          type: 'error',
+          message: '数据校验不通过'
+        })
+      }
     }
   }
 }

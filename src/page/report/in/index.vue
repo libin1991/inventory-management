@@ -14,9 +14,7 @@
         <el-tab-pane label="历史记录" name="history">
           <TableIn :data="vuexHistoryInFilter"></TableIn>
         </el-tab-pane>
-        <el-tab-pane label="分类汇总" name="class">
-          分类汇总
-        </el-tab-pane>
+        <el-tab-pane label="分类汇总" name="class">分类汇总</el-tab-pane>
       </el-tabs>
     </template>
   </Container>
@@ -40,7 +38,7 @@ export default {
     moStartDate () {
       if (this.filterDate) {
         const date = this.filterDate[0]
-        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo')
       } else {
         return false
       }
@@ -48,7 +46,7 @@ export default {
     moEndDate () {
       if (this.filterDate) {
         const date = this.filterDate[1]
-        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo a H:mm:ss')
+        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo')
       } else {
         return false
       }
@@ -57,7 +55,7 @@ export default {
       return this.vuexHistoryIn.filter(e => {
         const tempDateMo = moment(Date.parse(e.date))
         if (this.filterDate.length === 2) {
-          return tempDateMo.isBetween(this.filterDate[0], this.filterDate[1])
+          return tempDateMo.isBetween(moment(this.filterDate[0]).subtract(1, 'days'), moment(this.filterDate[1]).add(1, 'days'), 'day')
         } else {
           return false
         }

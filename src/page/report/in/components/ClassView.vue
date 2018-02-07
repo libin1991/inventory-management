@@ -1,18 +1,8 @@
 <template>
   <div>
-    <div
-      v-for="(item, index) in projectsClass"
-      :key="index">
+    <div v-for="(item, index) in projectsClass" :key="index">
       <h1>{{item.name}} 共入库{{add(item.data)}}{{item.unit}} 总价值{{add(item.data) * item.price}}元</h1>
-      <el-table
-        :data="item.data"
-        size="mini"
-        border>
-        <el-table-column prop="date" label="日期">
-          <template slot-scope="scope">{{mo(scope.row.date)}}</template>
-        </el-table-column>
-        <el-table-column prop="num" label="数量"></el-table-column>
-      </el-table>
+      <TableIn :data="item.data"></TableIn>
     </div>
   </div>
 </template>

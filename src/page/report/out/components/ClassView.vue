@@ -1,18 +1,8 @@
 <template>
   <div>
-    <div
-      v-for="(item, index) in departmentsClass"
-      :key="index">
-      <h1>{{item.name}}</h1>
-      <el-table
-        :data="item.data"
-        size="mini"
-        border>
-        <el-table-column prop="date" label="日期">
-          <template slot-scope="scope">{{mo(scope.row.date)}}</template>
-        </el-table-column>
-        <el-table-column prop="num" label="数量"></el-table-column>
-      </el-table>
+    <div v-for="(item, index) in departmentsClass" :key="index">
+      <h1>{{item.name}} 共计{{add(item.data)}}元</h1>
+      <TableOut :data="item.data"></TableOut>
     </div>
   </div>
 </template>
@@ -45,16 +35,15 @@ export default {
     }
   },
   methods: {
-    // add (data) {
-    //   const fn = (n) => {
-    //     let res = 0
-    //     n.forEach(e => {
-    //       res += Number(e)
-    //     })
-    //     return res
-    //   }
-    //   return fn(data.map(e => e.num))
-    // }
+    add (data) {
+      let add = 0
+      data.forEach(e => {
+        const price = this.dictProject(e.project, 'price')
+        const num = e.num
+        add += (price * num)
+      })
+      return add
+    }
   }
 }
 </script>

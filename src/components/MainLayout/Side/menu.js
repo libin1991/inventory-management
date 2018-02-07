@@ -35,6 +35,10 @@ export default [
       {
         label: '入库',
         value: 'report-in'
+      },
+      {
+        label: '出库',
+        value: 'report-out'
       }
     ]
   },

@@ -95,6 +95,12 @@ let router = new Router({
           name: 'report-in',
           ...metaAuth,
           component: resolve => { require(['@/page/report/in/index.vue'], resolve) }
+        },
+        {
+          path: 'report/out',
+          name: 'report-out',
+          ...metaAuth,
+          component: resolve => { require(['@/page/report/out/index.vue'], resolve) }
         }
       ]
     }

@@ -23,6 +23,7 @@
         <el-button type="primary" @click="handleSubmit('form')">保存</el-button>
       </el-form-item>
     </el-form>
+    <el-alert :title="infoTitle"></el-alert>
   </Container>
 </template>
 
@@ -74,6 +75,16 @@ export default {
           }
         ]
       }
+    }
+  },
+  computed: {
+    infoTitle () {
+      return this.form.project ? '' : '请先选择物品 在这里会提示您剩余数量'
+    }
+  },
+  watch: {
+    'form.project': (value) => {
+      console.log(value)
     }
   },
   methods: {

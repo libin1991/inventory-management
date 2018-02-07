@@ -38,7 +38,7 @@ export default {
     projectsClass () {
       return this.vuexProjectsValid.map(e => {
         return {
-          id: this.dictProject(e.id),
+          id: this.dictProject(e.id, 'name'),
           unit: e.unit,
           data: this.data.filter(item => item.project === e.id)
         }

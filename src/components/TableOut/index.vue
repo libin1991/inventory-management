@@ -5,10 +5,10 @@
     stripe
     border>
     <el-table-column prop="department" label="部门">
-      <template slot-scope="scope">{{dictDepartment(scope.row.department)}}</template>
+      <template slot-scope="scope">{{dictDepartment(scope.row.department, 'name')}}</template>
     </el-table-column>
     <el-table-column prop="project" label="物品">
-      <template slot-scope="scope">{{dictProject(scope.row.project)}}</template>
+      <template slot-scope="scope">{{dictProject(scope.row.project, 'name')}}</template>
     </el-table-column>
     <el-table-column prop="num" label="数量" width="100">
       <template slot-scope="scope">{{scope.row.num}}</template>

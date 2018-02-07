@@ -1,9 +1,10 @@
 <template>
   <el-select
     v-model="currentValue"
-    filterable
     placeholder="请选择入库物品"
-    no-data-text="请先录入备选物品">
+    no-data-text="请先录入备选物品"
+    filterable
+    clearable>
     <el-option
       v-for="item in options"
       :key="item.value"

@@ -7,6 +7,7 @@
       start-placeholder="开始日期"
       end-placeholder="结束日期">
     </el-date-picker>
+    <ProjectSelect v-model="project"></ProjectSelect>
     <template v-if="moStartDate && moEndDate">
       <el-alert :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据 (包括起止)`" style="margin: 20px 0px;"></el-alert>
       <el-tabs v-model="tabs" type="card">
@@ -36,6 +37,7 @@ export default {
   data () {
     return {
       tabs: 'history',
+      project: '',
       filterDate: null
     }
   },

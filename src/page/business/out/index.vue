@@ -85,7 +85,7 @@ export default {
       const name = this.dictProject(project, 'name')
       const num = this.dictProject(project, 'num')
       const unit = this.dictProject(project, 'unit')
-      return this.form.project ? `${name}剩余${num}${unit}` : '请先选择物品 在这里会提示您剩余数量'
+      return this.form.project ? `${name}剩余${num}${unit}` : '选择物品后 在这里会提示剩余数量'
     }
   },
   watch: {

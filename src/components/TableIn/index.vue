@@ -8,7 +8,7 @@
       <template slot-scope="scope">{{dictProject(scope.row.project)}}</template>
     </el-table-column>
     <el-table-column prop="num" label="数量" width="100">
-      <template slot-scope="scope">{{scope.row.num}}</template>
+      <template slot-scope="scope">{{scope.row.num}}{{dictProjectUnit(scope.row.project)}}</template>
     </el-table-column>
     <el-table-column prop="date" label="入库日期">
       <template slot-scope="scope">{{mo(scope.row.date)}}</template>

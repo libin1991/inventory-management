@@ -29,9 +29,11 @@
 
 <script>
 import vuex from '@/mixins/vuex.js'
+import dict from '@/mixins/dict.js'
 export default {
   mixins: [
-    vuex
+    vuex,
+    dict
   ],
   data () {
     return {
@@ -79,7 +81,11 @@ export default {
   },
   computed: {
     infoTitle () {
-      return this.form.project ? '' : '请先选择物品 在这里会提示您剩余数量'
+      const project = this.form.project
+      const name = this.dictProject(project, 'name')
+      const num = this.dictProject(project, 'num')
+      const unit = this.dictProject(project, 'unit')
+      return this.form.project ? `${name}剩余${num}${unit}` : '请先选择物品 在这里会提示您剩余数量'
     }
   },
   watch: {

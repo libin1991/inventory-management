@@ -62,7 +62,9 @@ export default {
       return this.vuexHistoryOut.filter(e => {
         const tempDateMo = moment(Date.parse(e.date))
         if (this.filterDate) {
-          return tempDateMo.isBetween(moment(this.filterDate[0]).subtract(1, 'days'), moment(this.filterDate[1]).add(1, 'days'), 'day')
+          const between = tempDateMo.isBetween(moment(this.filterDate[0]).subtract(1, 'days'), moment(this.filterDate[1]).add(1, 'days'), 'day')
+          const project = this.project ? e.project === this.project : true
+          return between && project
         }
       })
     }

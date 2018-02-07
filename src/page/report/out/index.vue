@@ -2,7 +2,13 @@
   <Container>
     <el-form label-position="top" :inline="true">
       <el-form-item label="时间范围">
-        <el-date-picker v-model="filterDate" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
+        <el-date-picker
+          v-model="filterDate"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期">
+        </el-date-picker>
       </el-form-item>
       <el-form-item label="物品">
         <ProjectSelect v-model="project"></ProjectSelect>
@@ -26,10 +32,12 @@
 import moment from 'moment'
 import vuex from '@/mixins/vuex.js'
 import ClassView from './components/ClassView'
+import reportMixin from '@/page/report/_mixins'
 moment.locale('zh-cn')
 export default {
   mixins: [
-    vuex
+    vuex,
+    reportMixin
   ],
   components: {
     ClassView
@@ -42,27 +50,14 @@ export default {
     }
   },
   computed: {
-    moStartDate () {
-      if (this.filterDate) {
-        const date = this.filterDate[0]
-        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo')
-      } else {
-        return false
-      }
-    },
-    moEndDate () {
-      if (this.filterDate) {
-        const date = this.filterDate[1]
-        return isNaN(date) ? false : moment(date).format('YYYY年MMMMDo')
-      } else {
-        return false
-      }
-    },
     vuexHistoryOutFilter () {
       return this.vuexHistoryOut.filter(e => {
         const tempDateMo = moment(Date.parse(e.date))
         if (this.filterDate) {
-          const between = tempDateMo.isBetween(moment(this.filterDate[0]).subtract(1, 'days'), moment(this.filterDate[1]).add(1, 'days'), 'day')
+          const between = tempDateMo.isBetween(
+            moment(this.filterDate[0]).subtract(1, 'days'),
+            moment(this.filterDate[1]).add(1, 'days'),
+            'day')
           const project = this.project ? e.project === this.project : true
           return between && project
         }

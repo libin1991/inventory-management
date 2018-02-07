@@ -2,7 +2,7 @@
   <div>
     <div v-for="(item, index) in departmentsClass" :key="index">
       <h1>{{item.name}} 共计{{add(item.data)}}元</h1>
-      <TableOut :data="item.data"></TableOut>
+      <TableOut :show-name="false" :data="item.data"></TableOut>
     </div>
   </div>
 </template>

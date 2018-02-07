@@ -4,7 +4,7 @@
     size="mini"
     stripe
     border>
-    <el-table-column prop="department" label="部门">
+    <el-table-column v-if="showName" prop="department" label="部门">
       <template slot-scope="scope">{{dictDepartment(scope.row.department, 'name')}}</template>
     </el-table-column>
     <el-table-column prop="project" label="物品">
@@ -37,6 +37,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    showName: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   }
 }

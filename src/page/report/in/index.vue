@@ -1,12 +1,16 @@
 <template>
   <Container>
-    <el-date-picker
-      v-model="filterDate"
-      type="daterange"
-      range-separator="至"
-      start-placeholder="开始日期"
-      end-placeholder="结束日期">
-    </el-date-picker>
+    <el-form label-position="top" :inline="true">
+      <el-form-item label="时间范围">
+        <el-date-picker
+          v-model="filterDate"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期">
+        </el-date-picker>
+      </el-form-item>
+    </el-form>
     <template v-if="moStartDate && moEndDate">
       <el-alert
         :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据 (包括起止)`"

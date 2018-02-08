@@ -1,7 +1,7 @@
 <template>
   <Container>
     <el-form :model="form" :rules="rules" ref="form">
-      <el-form-item label="日期" prop="num">
+      <el-form-item label="日期" prop="date">
         <el-date-picker
           v-model="form.date"
           type="datetime"
@@ -10,13 +10,13 @@
           :picker-options="pickerOptions">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="部门" prop="project">
+      <el-form-item label="部门" prop="department">
         <DepartmentSelect v-model="form.department"></DepartmentSelect>
       </el-form-item>
       <el-form-item label="物品" prop="project">
         <ProjectSelect v-model="form.project" :nonempty="true"></ProjectSelect>
       </el-form-item>
-      <el-form-item label="数量" prop="num">
+      <el-form-item v-if="form.project" label="数量" prop="num">
         <el-input-number v-model="form.num" :step="1"></el-input-number>
       </el-form-item>
       <el-form-item>
@@ -41,7 +41,7 @@ export default {
         date: new Date(),
         department: null,
         project: null,
-        num: 1
+        num: 0
       },
       rules: {
         date: [
@@ -90,7 +90,9 @@ export default {
   },
   watch: {
     'form.project': (value) => {
-      console.log(value)
+      if (value === '') {
+        this.form.project = 0
+      }
     }
   },
   methods: {

@@ -10,7 +10,7 @@
       :key="item.value"
       :label="item.label"
       :value="item.value">
-      <div style="width: 300px;">
+      <div v-if="!simple" style="width: 300px;">
         <span style="float: left">
           {{item.label}}
           <span class="project-select-num" :class="item.num === 0 ? 'none' : ''">
@@ -40,6 +40,11 @@ export default {
       default: ''
     },
     nonempty: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    simple: {
       type: Boolean,
       required: false,
       default: false

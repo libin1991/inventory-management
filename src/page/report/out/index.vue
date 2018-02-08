@@ -11,7 +11,7 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item label="物品">
-        <ProjectSelect v-model="project"></ProjectSelect>
+        <ProjectSelect v-model="project" :simple="true"></ProjectSelect>
       </el-form-item>
     </el-form>
     <template v-if="moStartDate && moEndDate">

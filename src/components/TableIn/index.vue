@@ -2,13 +2,16 @@
   <el-table
     :data="data"
     size="mini"
-    stripe
+    :stripe="stripe"
     border>
     <el-table-column v-if="showName" label="物品">
       <template slot-scope="scope">{{dictProject(scope.row.project, 'name')}}</template>
     </el-table-column>
     <el-table-column label="数量" width="100">
-      <template slot-scope="scope">{{scope.row.num}}{{dictProject(scope.row.project, 'unit')}}</template>
+      <template slot-scope="scope">{{scope.row.num}}</template>
+    </el-table-column>
+    <el-table-column label="单位" width="100">
+      <template slot-scope="scope">{{dictProject(scope.row.project, 'unit')}}</template>
     </el-table-column>
     <el-table-column label="入库日期">
       <template slot-scope="scope">{{mo(scope.row.date)}}</template>
@@ -36,6 +39,11 @@ export default {
       default: () => []
     },
     showName: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    stripe: {
       type: Boolean,
       required: false,
       default: true

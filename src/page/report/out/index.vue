@@ -15,12 +15,20 @@
       </el-form-item>
     </el-form>
     <template v-if="moStartDate && moEndDate">
-      <el-alert :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据 (包括起止)`" style="margin-bottom: 20px;"></el-alert>
-      <el-tabs v-model="tabs" type="card">
+      <el-alert
+        :title="`你选择的是 ${moStartDate} - ${moEndDate} 之间的数据 (包括起止)`"
+        style="margin-bottom: 20px;">
+      </el-alert>
+      <el-alert
+        v-if="vuexHistoryOutFilter.length === 0"
+        title="设置的过滤条件没有筛选结果"
+        type="warning">
+      </el-alert>
+      <el-tabs v-else v-model="tabs" type="card">
         <el-tab-pane label="历史记录" name="history">
           <TableOut :data="vuexHistoryOutFilter"></TableOut>
         </el-tab-pane>
-        <el-tab-pane label="分类汇总" name="class">
+        <el-tab-pane label="按部门分类" name="class">
           <ClassView :data="vuexHistoryOutFilter"></ClassView>
         </el-tab-pane>
       </el-tabs>

@@ -1,10 +1,5 @@
 <template>
   <div>
-    <el-alert
-      v-if="classes.length === 0"
-      title="设置的过滤条件没有筛选结果"
-      type="warning">
-    </el-alert>
     <div v-for="(item, index) in classes" :key="index">
       <h1>{{item.name}} 共入库{{add(item.data)}}{{item.unit}} 总价值{{add(item.data) * item.price}}元</h1>
       <TableIn :show-name="false" :data="item.data"></TableIn>

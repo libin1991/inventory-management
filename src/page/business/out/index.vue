@@ -17,12 +17,13 @@
         <ProjectSelect v-model="form.project" :nonempty="true"></ProjectSelect>
       </el-form-item>
       <el-form-item v-if="form.project" label="数量" prop="num">
-        <el-input-number v-model="form.num" :step="1"></el-input-number>
+        <el-input-number v-model="form.num" :step="1" :max="numMax"></el-input-number>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleSubmit('form')">保存</el-button>
       </el-form-item>
     </el-form>
+    {{numMax}}
     <el-alert :title="infoTitle"></el-alert>
   </Container>
 </template>
@@ -37,6 +38,7 @@ export default {
   ],
   data () {
     return {
+      numMax: 0,
       form: {
         date: new Date(),
         department: null,
@@ -89,10 +91,13 @@ export default {
     }
   },
   watch: {
-    'form.project': (value) => {
-      if (value === '') {
-        this.form.project = 0
-      }
+    // 监听物品变化
+    'form.project': {
+      handler (value) {
+        this.form.num = 0
+        this.numMax = value ? this.dictProject(value, 'num') : 0
+      },
+      deep: true
     }
   },
   methods: {
